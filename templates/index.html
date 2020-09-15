@@ -2,30 +2,25 @@
 {% block page_title %}Star Wars planets' list{% endblock %}
 {% block contents %}
     <h1>{{ self.page_title() }}</h1>
+    <!-- planet data table -->
     <table class="table table-bordered table-striped">
+        <!-- header names -->
         <thead class="table-dark">
             <tr>
-                <th>NAME</th>
-                <th>DIAMETER</th>
-                <th>CLIMATE</th>
+                {% for name in columns_name %}
+                    <th>{{ name }}</th>
+                {% endfor %}
             </tr>
         </thead>
+        <!-- planet data -->
         <tbody>
-            <tr>
-                <td>cell data</td>
-                <td>cell data</td>
-                <td>cell data</td>
-            </tr>
-            <tr>
-                <td>cell data</td>
-                <td>cell data</td>
-                <td>cell data</td>
-            </tr>
-            <tr>
-                <td>cell data</td>
-                <td>cell data</td>
-                <td>cell data</td>
-            </tr>
+            {% for planet in planets_data %}
+                <tr>
+                    {% for key in columns_order %}
+                        <td>{{ planet[key] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

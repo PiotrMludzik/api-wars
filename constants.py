@@ -1,8 +1,8 @@
-# -------------------------------------------------------------------------------------------------
-#                                             API Wars
-#                                            constants
-#                                              v 1.0
-# -------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
+#                                                       API Wars
+#                                                      constants
+#                                                        v 1.0
+# ---------------------------------------------------------------------------------------------------------------------
 
 # key names
 KEY_PLANETS_CLIMATE = 'climate'
@@ -13,7 +13,7 @@ KEY_PLANETS_TERRAIN = 'terrain'
 KEY_PLANETS_WATER = 'surface_water'
 
 # sort order of table headers
-TABLE_COLUMN_ORDER = [
+PLANETS_COLUMN_ORDER = [
     KEY_PLANETS_NAME,
     KEY_PLANETS_DIAMETER,
     KEY_PLANETS_CLIMATE,
