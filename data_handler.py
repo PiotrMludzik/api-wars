@@ -4,13 +4,27 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-import constants as c
 import requests
+import constants as c
 
 
 # --------------------------------------------------- data handling ---------------------------------------------------
 
-def get_planet_data(page_number: int = 1) -> list:
+def planets_prepare_html_data(page_number: int = 1) -> list:
+    """ Returns only the necessary data about the planets """
+    raw_planets_data = planets_get_data(page_number)
+
+    prepared_planets_data = []
+    for raw_planet in raw_planets_data:
+        prepared_planet = {}
+        for key in c.PLANETS_COLUMN_ORDER:
+            prepared_planet[key] = raw_planet[key]
+        prepared_planets_data.append(prepared_planet)
+
+    return prepared_planets_data
+
+
+def planets_get_data(page_number: int = 1) -> list:
     """ Gets the planets data. """
     planets_data = swapi_get_data(f'planets/?page={page_number}')
     # error handling

@@ -19,9 +19,8 @@ def index():
     """ Shows main page with the planets' list. """
     return render_template(
         'index.html',
-        columns_order=c.PLANETS_COLUMN_ORDER,
-        columns_name=util.prepare_header_names(c.PLANETS_COLUMN_ORDER),
-        planets_data=dh.get_planet_data()
+        columnsName=util.prepare_header_names(c.PLANETS_COLUMN_ORDER),
+        planetsData=dh.planets_prepare_html_data()
     )
 
 

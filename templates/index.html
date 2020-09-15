@@ -7,17 +7,17 @@
         <!-- header names -->
         <thead class="table-dark">
             <tr>
-                {% for name in columns_name %}
+                {% for name in columnsName %}
                     <th>{{ name }}</th>
                 {% endfor %}
             </tr>
         </thead>
         <!-- planet data -->
         <tbody>
-            {% for planet in planets_data %}
+            {% for planet in planetsData %}
                 <tr>
-                    {% for key in columns_order %}
-                        <td>{{ planet[key] }}</td>
+                    {% for key, data in planet.items() %}
+                        <td>{{ data }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
