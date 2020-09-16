@@ -5,9 +5,9 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 from flask import Flask, redirect, render_template
+import constants as c
 import data_handler as dh
 import utilities as util
-import constants as c
 
 app = Flask(__name__)
 
