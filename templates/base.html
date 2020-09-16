@@ -10,10 +10,10 @@
     <title>{% block page_title %}{% endblock %} | API Wars</title>
 </head>
 <body>
-    <!-- The navigation bar -->
+    <!-- Navigation bar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
         <div class="navbar-brand">API Wars</div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -25,10 +25,10 @@
                     <a class="nav-link disabled" href="#">Voting statistics</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                         User not logged in
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu">
                         <a class="dropdown-item disabled" href="#">Sign in</a>
                         <a class="dropdown-item disabled" href="#">Sign out</a>
                         <div class="dropdown-divider"></div>
@@ -39,8 +39,11 @@
         </div>
     </nav>
 
-    <!-- The main page contents -->
+    <!-- Main page contents -->
     <div id="contents">
+        <!-- Header page -->
+        <h1>{{ self.page_title() }}</h1>
+        <!-- Contents -->
         {% block contents %}{% endblock %}
     </div>
 

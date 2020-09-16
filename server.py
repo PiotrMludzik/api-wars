@@ -4,7 +4,7 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-from flask import Flask, redirect, render_template
+from flask import Flask, render_template
 import constants as c
 import data_handler as dh
 import utilities as util
