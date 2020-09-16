@@ -6,7 +6,7 @@
 
 from flask import Flask, render_template, redirect
 import constants as c
-import data_handler as dh
+import controller as ctrl
 import utilities as util
 
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def planets_page(page_number):
         pages_number=3,  # Fixme: implement pages_number
         active_page=page_number,
         columnsName=util.prepare_header_names(c.PLANETS_COLUMN_ORDER),
-        planetsData=dh.planets_prepare_html_data()  # Fixme: get planets' data from actual page
+        planetsData=ctrl.planets_get_data()  # Fixme: get planets' data from actual page
     )
 
 
