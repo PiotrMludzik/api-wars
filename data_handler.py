@@ -66,9 +66,9 @@ def subject_format_data(subject: str, data: list) -> list:
 
     for item in data:
         if subject == c.SUBJECT.PLANETS:
-            item[c.KEY_PLANETS_DIAMETER] = format_diameter(item[c.KEY_PLANETS_DIAMETER])
-            item[c.KEY_PLANETS_WATER] = format_water(item[c.KEY_PLANETS_WATER])
-            item[c.KEY_PLANETS_POPULATION] = format_population(item[c.KEY_PLANETS_POPULATION])
+            item[c.KEY.PLANETS.DIAMETER] = format_diameter(item[c.KEY.PLANETS.DIAMETER])
+            item[c.KEY.PLANETS.WATER] = format_water(item[c.KEY.PLANETS.WATER])
+            item[c.KEY.PLANETS.POPULATION] = format_population(item[c.KEY.PLANETS.POPULATION])
 
     return data
 
