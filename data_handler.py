@@ -38,7 +38,7 @@ def planets_format_data(planets_data: list) -> list:
     import locale
 
     def format_diameter(data):
-        return '{:n} km'.format(int(data))
+        return '{:n} km'.format(int(data)) if data != 'unknown' else data
 
     def format_water(data):
         if data == 'unknown':
