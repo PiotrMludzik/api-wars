@@ -21,7 +21,7 @@
                 <!-- Subjects list -->
                 {% for subject in subjectsList %}
                     <li class="nav-item">
-                        <a class="nav-link {% if subject == subjectName %}active{% endif %}" href="{{ url_for('index') }}">{{ subject|capitalize }}</a>
+                        <a class="nav-link {% if subject == subjectName %}active{% endif %}" href="{{ url_for('subject_page', subject=subject, page_number=1) }}">{{ subject|capitalize }}</a>
                     </li>
                 {% endfor %}
                 <!-- Voting statistics -->
