@@ -8,6 +8,7 @@
 class Subject:
     PLANETS = 'planets'
     STARSHIPS = 'starships'
+    VEHICLES = 'vehicles'
 
 
 SUBJECT = Subject()
@@ -25,7 +26,7 @@ class Key:
 
     class Starships:
         ATSPEED = 'max_atmosphering_speed'
-        CAPACITY = 'cargo_capacity'
+        CARGO = 'cargo_capacity'
         CLASS = 'starship_class'
         CREW = 'crew'
         LENGTH = 'length'
@@ -34,8 +35,19 @@ class Key:
         NAME = 'name'
         PASSENGERS = 'passengers'
 
+    class Vehicles:
+        ATSPEED = 'max_atmosphering_speed'
+        CARGO = 'cargo_capacity'
+        CLASS = 'vehicle_class'
+        CREW = 'crew'
+        LENGTH = 'length'
+        MODEL = 'model'
+        NAME = 'name'
+        PASSENGERS = 'passengers'
+
     PLANETS = Planets()
     STARSHIPS = Starships()
+    VEHICLES = Vehicles()
 
 
 KEY = Key()
@@ -57,10 +69,20 @@ class Data:
         KEY.STARSHIPS.CLASS,
         KEY.STARSHIPS.CREW,
         KEY.STARSHIPS.PASSENGERS,
-        KEY.STARSHIPS.CAPACITY,
+        KEY.STARSHIPS.CARGO,
         KEY.STARSHIPS.LENGTH,
         KEY.STARSHIPS.ATSPEED,
         KEY.STARSHIPS.MEGALIGHTS
+    ]
+    VEHICLES = [
+        KEY.VEHICLES.NAME,
+        KEY.VEHICLES.MODEL,
+        KEY.VEHICLES.CLASS,
+        KEY.VEHICLES.CREW,
+        KEY.VEHICLES.PASSENGERS,
+        KEY.VEHICLES.CARGO,
+        KEY.VEHICLES.LENGTH,
+        KEY.VEHICLES.ATSPEED
     ]
 
 
