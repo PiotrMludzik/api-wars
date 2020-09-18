@@ -88,5 +88,9 @@ def subjects_get_list() -> list:
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
 def get_page_pagination_number(items_number):
-    """ Calculates the number of pages of pagination. """
-    return items_number // swapi.PAGINATION_NUMBER
+    """
+        Calculates the number of pages of pagination.
+        The result is rounded up from the formula:
+        (numerator + denominator - 1) // denominator
+    """
+    return (items_number + swapi.PAGINATION_NUMBER - 1) // swapi.PAGINATION_NUMBER
