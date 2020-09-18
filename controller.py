@@ -20,6 +20,11 @@ def subject_get_data(subject: str, page_number: int) -> list:
     return data
 
 
+def subjects_get_list() -> list:
+    """ Returns a subjects name list. """
+    return dh.subjects_get_list()
+
+
 def columns_name_get(subject) -> list:
     """ Returns columns name. """
     if subject == c.SUBJECT.PLANETS:
