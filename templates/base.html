@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <title>{% block page_title %}{% endblock %} | API Wars</title>
+    <title>{{ subjectName|capitalize }} | API Wars</title>
 </head>
 <body>
     <!-- Navigation bar -->
@@ -19,7 +19,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Planets list</a>
+                    <a class="nav-link active" href="{{ url_for('index') }}">Planets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Spaceships</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">People</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Voting statistics</a>
@@ -52,7 +61,7 @@
                 {% else %}
                     <li class="page-item">
                 {% endif %}
-                    <a class="page-link" href="{{ url_for('planets_page', page_number=active_page - 1) }}">&laquo;</a>
+                    <a class="page-link" href="{{ url_for('subject_page', subject=subjectName, page_number=active_page - 1) }}">&laquo;</a>
                     </li>
                 <!-- Page number buttons -->
                 {% for page in range(1, pages_number + 1) %}
@@ -61,7 +70,7 @@
                     {% else %}
                         <li class="page-item">
                     {% endif %}
-                        <a class="page-link" href="{{ url_for('planets_page', page_number=page) }}">{{ page }}</a>
+                        <a class="page-link" href="{{ url_for('subject_page', subject=subjectName, page_number=page) }}">{{ page }}</a>
                         </li>
                 {% endfor %}
                 <!-- Next button -->
@@ -70,7 +79,7 @@
                 {% else %}
                     <li class="page-item">
                 {% endif %}
-                    <a class="page-link" href="{{ url_for('planets_page', page_number=active_page + 1) }}">&raquo;</a>
+                    <a class="page-link" href="{{ url_for('subject_page', subject=subjectName, page_number=active_page + 1) }}">&raquo;</a>
                     </li>
             </ul>
         </nav>

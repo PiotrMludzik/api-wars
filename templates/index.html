@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block page_title %}Star Wars planets' list{% endblock %}
+{% block page_title %}Star Wars {{ subjectName }} list{% endblock %}
 {% block contents %}
-    <!-- Planet data table -->
+    <!-- Subject data table -->
     <table class="table table-bordered table-striped">
         <!-- Header names -->
         <thead class="table-dark">
@@ -11,12 +11,12 @@
                 {% endfor %}
             </tr>
         </thead>
-        <!-- Planet data -->
+        <!-- Subject data -->
         <tbody>
-            {% for planet in planetsData %}
+            {% for item in subjectData %}
                 <tr>
-                    {% for key, data in planet.items() %}
-                        <td>{{ data }}</td>
+                    {% for key, value in item.items() %}
+                        <td>{{ value }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}

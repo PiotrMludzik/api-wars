@@ -19,14 +19,15 @@ def index():
     return redirect('/planets/1')
 
 
-@app.route('/planets/<int:page_number>')
-def planets_page(page_number):
-    """ Shows page with the planets' list. """
+@app.route('/<subject>/<int:page_number>')
+def subject_page(subject, page_number):
+    """ Shows a page listing the data specified in the subject variable. """
     return render_template(
         'index.html',
-        planetsData=ctrl.planets_get_data(page_number),
-        columnsName=ctrl.columns_name_get(),
-        pages_number=ctrl.pagination_number_get('planets'),
+        subjectName=subject,
+        subjectData=ctrl.subject_get_data(subject, page_number),
+        columnsName=ctrl.columns_name_get(subject),
+        pages_number=ctrl.pagination_number_get(subject),
         active_page=page_number
     )
 
