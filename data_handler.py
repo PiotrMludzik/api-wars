@@ -8,7 +8,7 @@ import constants as c
 import swapi
 
 
-def planets_get_data(page_number: int = 1) -> list:
+def planets_get_data(page_number: int) -> list:
     """ Gets the planets data. """
     planets_data = swapi.get_data(f'planets/?page={page_number}')
 

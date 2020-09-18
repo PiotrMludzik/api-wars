@@ -7,6 +7,7 @@
 import requests
 
 
+SWAPI_PAGINATION_NUMBER = 10
 SWAPI_ROOT_URL = 'https://swapi.dev/api/'
 
 
