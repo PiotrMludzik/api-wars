@@ -29,6 +29,8 @@ def columns_name_get(subject) -> list:
     """ Returns columns name. """
     if subject == c.SUBJECT.PLANETS:
         return util.prepare_header_names(c.DATA.PLANETS)
+    elif subject == c.SUBJECT.STARSHIPS:
+        return util.prepare_header_names(c.DATA.STARSHIPS)
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
 

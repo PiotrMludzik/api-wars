@@ -26,6 +26,8 @@ def subject_prepare_data(subject: str, raw_data: dict) -> list:
     def get_needed_data(subject: str) -> list:
         if subject == c.SUBJECT.PLANETS:
             needed_data = c.DATA.PLANETS
+        elif subject == c.SUBJECT.STARSHIPS:
+            needed_data = c.DATA.STARSHIPS
         else:
             raise ValueError(f'Needed data for {subject} not found.')
 
