@@ -21,3 +21,6 @@ PLANETS_COLUMN_ORDER = [
     KEY_PLANETS_WATER,
     KEY_PLANETS_POPULATION
 ]
+
+# session keys
+S_KEY_PLANETS_NUMBER = 'planets_page_number'

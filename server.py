@@ -8,6 +8,7 @@ from flask import Flask, render_template, redirect
 import controller as ctrl
 
 app = Flask(__name__)
+app.secret_key = '#I\'ll be back!:D'  # encrypt session variables
 
 
 # ---------------------------------------------------- main route -----------------------------------------------------
@@ -23,10 +24,10 @@ def planets_page(page_number):
     """ Shows page with the planets' list. """
     return render_template(
         'index.html',
-        pages_number=3,  # Fixme: implement pages_number
-        active_page=page_number,
-        columnsName=ctrl.get_columns_name(),
-        planetsData=ctrl.planets_get_data(page_number)  # Fixme: get planets' data from actual page
+        planetsData=ctrl.planets_get_data(page_number),
+        columnsName=ctrl.columns_name_get(),
+        pages_number=ctrl.pagination_number_get('planets'),
+        active_page=page_number
     )
 
 

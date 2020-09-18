@@ -8,7 +8,9 @@ import constants as c
 import swapi
 
 
-def planets_get_data(page_number: int) -> list:
+# --------------------------------------------------- planets' data ---------------------------------------------------
+
+def planets_get_data(page_number: int) -> dict:
     """ Gets the planets data. """
     planets_data = swapi.get_data(f'planets/?page={page_number}')
 
@@ -16,10 +18,10 @@ def planets_get_data(page_number: int) -> list:
     if 'detail' in planets_data and planets_data['detail'] == 'Not found':
         raise ValueError(f'Page {page_number} with list of planets not found')
 
-    return planets_data['results']
+    return planets_data
 
 
-def planets_prepare_data(raw_planets_data: list) -> list:
+def planets_prepare_data(raw_planets_data: dict) -> list:
     """ Returns only the necessary data about the planets """
     prepared_planets_data = []
     for raw_planet in raw_planets_data:
@@ -58,3 +60,10 @@ def planets_format_data(planets_data: list) -> list:
         planet[c.KEY_PLANETS_POPULATION] = format_population(planet[c.KEY_PLANETS_POPULATION])
 
     return planets_data
+
+
+# ------------------------------------------------ other data handlers ------------------------------------------------
+
+def get_page_pagination_number(items_number):
+    """ Calculates the number of pages of pagination """
+    return items_number // swapi.PAGINATION_NUMBER
