@@ -79,7 +79,7 @@ def subject_format_data(subject: str, data: list) -> list:
 
 def subjects_get_list() -> list:
     """ Returns a subjects name list. """
-    attributes_list = [a for a in dir(c.SUBJECT) if not a.startswith('__') and not callable(getattr(c.SUBJECT, a))]
+    attributes_list = [a for a in dir(c.SUBJECT) if not a.startswith('__')]
     values_list = []
     for attribute in attributes_list:
         values_list.append(getattr(c.SUBJECT, attribute))
