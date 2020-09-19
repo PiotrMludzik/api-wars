@@ -24,20 +24,20 @@ def subject_get_data(subject: str, page_number: int) -> dict:
 
 def subject_prepare_data(subject: str, raw_data: dict) -> list:
     """ Returns only the necessary data for a given subject. """
-    def get_needed_data(subject: str) -> list:
+    def needed_data_get(data_name: str) -> list:
         if subject == c.SUBJECT.PLANETS:
-            needed_data = c.DATA.PLANETS
+            data_name = c.DATA.PLANETS
         elif subject == c.SUBJECT.STARSHIPS:
-            needed_data = c.DATA.STARSHIPS
+            data_name = c.DATA.STARSHIPS
         elif subject == c.SUBJECT.VEHICLES:
-            needed_data = c.DATA.VEHICLES
+            data_name = c.DATA.VEHICLES
         else:
             raise ValueError(f'Needed data for {subject} not found.')
 
-        return needed_data
+        return data_name
 
     # ------------- subject_prepare_data() -------------
-    needed_data = get_needed_data(subject)
+    needed_data = needed_data_get(subject)
     prepared_data = []
     for raw_item in raw_data:
         prepared_item = {}
@@ -63,13 +63,22 @@ def subjects_get_list() -> list:
 def column_names_get(subject) -> list:
     """ Returns column names. """
     if subject == c.SUBJECT.PLANETS:
-        return util.prepare_header_names(c.DATA.PLANETS)
+        return c.DATA.PLANETS
     elif subject == c.SUBJECT.STARSHIPS:
-        return util.prepare_header_names(c.DATA.STARSHIPS)
+        return c.DATA.STARSHIPS
     elif subject == c.SUBJECT.VEHICLES:
-        return util.prepare_header_names(c.DATA.VEHICLES)
+        return c.DATA.VEHICLES
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
+
+
+def column_names_prepare(raw_names: list) -> list:
+    """
+        Returns the list of column names, where:
+            * character '_' is replaced with a space ' ';
+            * the first letter in a word is capitalized.
+    """
+    return [name.replace('_', ' ').capitalize() for name in raw_names]
 
 
 def page_pagination_number_get(items_number):

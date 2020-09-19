@@ -5,17 +5,17 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 # Topics to display.
-class Subject:
+class _Subject:
     PLANETS = 'planets'
     STARSHIPS = 'starships'
     VEHICLES = 'vehicles'
 
 
-SUBJECT = Subject()
+SUBJECT = _Subject()
 
 
 # Key names for subject data.
-class Key:
+class _Key:
     class Planets:
         CLIMATE = 'climate'
         DIAMETER = 'diameter'
@@ -50,11 +50,11 @@ class Key:
     VEHICLES = Vehicles()
 
 
-KEY = Key()
+KEY = _Key()
 
 
 # Constants for the column names and their sort order.
-class Data:
+class _Data:
     PLANETS = [
         KEY.PLANETS.NAME,
         KEY.PLANETS.DIAMETER,
@@ -86,4 +86,11 @@ class Data:
     ]
 
 
-DATA = Data()
+DATA = _Data()
+
+
+class _NewColumnName:
+    MEGALIGHTS = 'Megalights'
+
+
+NEW_COLUMN_NAME = _NewColumnName()

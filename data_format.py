@@ -6,6 +6,7 @@
 
 import locale
 import constants as c
+import utilities as util
 
 
 # -------------------------------------------------- main functions ---------------------------------------------------
@@ -21,6 +22,15 @@ def subject_format_data(subject: str, data: list) -> list:
             item[c.KEY.PLANETS.POPULATION] = _format_population(item[c.KEY.PLANETS.POPULATION])
 
     return data
+
+
+def column_names_format(column_names: list) -> list:
+    """ Return a formatted column name if necessary. """
+    MEGALIGHTS = c.KEY.STARSHIPS.MEGALIGHTS
+    if MEGALIGHTS in column_names:
+        column_names = util.change_list_value(column_names, MEGALIGHTS, c.NEW_COLUMN_NAME.MEGALIGHTS)
+
+    return column_names
 
 
 # ------------------------------------------------- format functions --------------------------------------------------

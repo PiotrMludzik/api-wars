@@ -8,6 +8,7 @@ import constants as c
 import data_handler as dh
 import data_format as df
 import session
+import utilities as util
 
 
 def subject_get_data(subject: str, page_number: int) -> list:
@@ -27,7 +28,11 @@ def subjects_get_list() -> list:
 
 def column_names_get(subject) -> list:
     """ Returns column names. """
-    return dh.column_names_get(subject)
+    column_names = dh.column_names_get(subject)
+    column_names = df.column_names_format(column_names)
+    column_names = dh.column_names_prepare(column_names)
+
+    return column_names
 
 
 def pagination_number_set(page_name, items_number):
