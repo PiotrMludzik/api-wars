@@ -6,6 +6,7 @@
 
 import constants as c
 import data_handler as dh
+import data_format as df
 import session
 import utilities as util
 
@@ -15,7 +16,7 @@ def subject_get_data(subject: str, page_number: int) -> list:
     data = dh.subject_get_data(subject, page_number)
     pagination_number_set(subject, data['count'])  # 'count' - the number of items in subject
     data = dh.subject_prepare_data(subject, data['results'])  # 'results' - the subject data
-    data = dh.subject_format_data(subject, data)
+    data = df.subject_format_data(subject, data)
 
     return data
 
