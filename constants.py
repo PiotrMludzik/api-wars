@@ -53,7 +53,7 @@ class Key:
 KEY = Key()
 
 
-# Constants for the names of the topic lists to display and their column sort order.
+# Constants for the column names and their sort order.
 class Data:
     PLANETS = [
         KEY.PLANETS.NAME,

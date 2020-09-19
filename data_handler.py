@@ -78,7 +78,7 @@ def subject_format_data(subject: str, data: list) -> list:
 
 
 def subjects_get_list() -> list:
-    """ Returns a subjects name list. """
+    """ Returns a subject names list. """
     attributes_list = [a for a in dir(c.SUBJECT) if not a.startswith('__')]
     values_list = []
     for attribute in attributes_list:
@@ -89,7 +89,7 @@ def subjects_get_list() -> list:
 
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
-def get_page_pagination_number(items_number):
+def page_pagination_number_get(items_number):
     """
         Calculates the number of pages of pagination.
         The result is rounded up from the formula:

@@ -21,12 +21,12 @@ def subject_get_data(subject: str, page_number: int) -> list:
 
 
 def subjects_get_list() -> list:
-    """ Returns a subjects name list. """
+    """ Returns a subject names list. """
     return dh.subjects_get_list()
 
 
 def columns_name_get(subject) -> list:
-    """ Returns columns name. """
+    """ Returns column names. """
     if subject == c.SUBJECT.PLANETS:
         return util.prepare_header_names(c.DATA.PLANETS)
     elif subject == c.SUBJECT.STARSHIPS:
@@ -39,9 +39,10 @@ def columns_name_get(subject) -> list:
 
 def pagination_number_set(page_name, items_number):
     """ Sets the number of subpages (pagination of the page) and remembers it as variable in the sessions. """
-    pagination_number = dh.get_page_pagination_number(items_number)
-    session.set_pagination_number(page_name, pagination_number)
+    pagination_number = dh.page_pagination_number_get(items_number)
+    session.pagination_number_set(page_name, pagination_number)
 
 
 def pagination_number_get(page_name) -> int:
-    return session.get_pagination_number(page_name)
+    """ Gets the pagination number from variable in session. """
+    return session.pagination_number_get(page_name)
