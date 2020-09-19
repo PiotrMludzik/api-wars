@@ -6,6 +6,7 @@
 
 import constants as c
 import swapi
+import utilities as util
 
 
 # --------------------------------------------------- data handlers ---------------------------------------------------
@@ -58,6 +59,18 @@ def subjects_get_list() -> list:
 
 
 # ------------------------------------------------ other data handlers ------------------------------------------------
+
+def column_names_get(subject) -> list:
+    """ Returns column names. """
+    if subject == c.SUBJECT.PLANETS:
+        return util.prepare_header_names(c.DATA.PLANETS)
+    elif subject == c.SUBJECT.STARSHIPS:
+        return util.prepare_header_names(c.DATA.STARSHIPS)
+    elif subject == c.SUBJECT.VEHICLES:
+        return util.prepare_header_names(c.DATA.VEHICLES)
+    else:
+        raise ValueError(f'There are no column names for the {subject} subject.')
+
 
 def page_pagination_number_get(items_number):
     """

@@ -8,7 +8,6 @@ import constants as c
 import data_handler as dh
 import data_format as df
 import session
-import utilities as util
 
 
 def subject_get_data(subject: str, page_number: int) -> list:
@@ -26,16 +25,9 @@ def subjects_get_list() -> list:
     return dh.subjects_get_list()
 
 
-def columns_name_get(subject) -> list:
+def column_names_get(subject) -> list:
     """ Returns column names. """
-    if subject == c.SUBJECT.PLANETS:
-        return util.prepare_header_names(c.DATA.PLANETS)
-    elif subject == c.SUBJECT.STARSHIPS:
-        return util.prepare_header_names(c.DATA.STARSHIPS)
-    elif subject == c.SUBJECT.VEHICLES:
-        return util.prepare_header_names(c.DATA.VEHICLES)
-    else:
-        raise ValueError(f'There are no column names for the {subject} subject.')
+    return dh.column_names_get(subject)
 
 
 def pagination_number_set(page_name, items_number):

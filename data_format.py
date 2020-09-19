@@ -8,7 +8,7 @@ import locale
 import constants as c
 
 
-# --------------------------------------------------- main function ---------------------------------------------------
+# -------------------------------------------------- main functions ---------------------------------------------------
 
 def subject_format_data(subject: str, data: list) -> list:
     """ Returns formatted the subject data. """

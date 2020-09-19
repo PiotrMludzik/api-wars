@@ -29,7 +29,7 @@ def subject_page(subject, page_number):
         subjectName=subject,
         subjectData=ctrl.subject_get_data(subject, page_number),
         subjectsList=SUBJECT_LIST,
-        columnsName=ctrl.columns_name_get(subject),
+        columnNames=ctrl.column_names_get(subject),
         pages_number=ctrl.pagination_number_get(subject),
         active_page=page_number
     )
