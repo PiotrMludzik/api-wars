@@ -9,12 +9,12 @@ import data_format as df
 import session
 
 
-def subject_get_data(subject: str, page_number: int) -> list:
+def data_get(subject: str, page_number: int) -> list:
     """ Collects the subject data. """
-    data = dh.subject_get_data(subject, page_number)
+    data = dh.data_get(subject, page_number)
     pagination_number_set(subject, data['count'])  # 'count' - the number of items in subject
-    data = dh.subject_prepare_data(subject, data['results'])  # 'results' - the subject data
-    data = df.subject_format_data(subject, data)
+    data = dh.data_prepare(subject, data['results'])  # 'results' - the subject data
+    data = df.data_format(subject, data)
 
     return data
 

@@ -26,7 +26,7 @@ def subject_page(subject, page_number):
     return render_template(
         'index.html',
         subjectName=subject,
-        subjectData=ctrl.subject_get_data(subject, page_number),
+        subjectData=ctrl.data_get(subject, page_number),
         subjectsList=c.SUBJECT_ORDER,
         columnNames=ctrl.column_names_get(subject),
         pages_number=ctrl.pagination_number_get(subject),

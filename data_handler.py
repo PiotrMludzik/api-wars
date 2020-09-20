@@ -10,7 +10,7 @@ import swapi
 
 # --------------------------------------------------- data handlers ---------------------------------------------------
 
-def subject_get_data(subject: str, page_number: int) -> dict:
+def data_get(subject: str, page_number: int) -> dict:
     """ Gets the subject data. """
     data = swapi.get_data(f'{subject}/?page={page_number}')
 
@@ -21,7 +21,7 @@ def subject_get_data(subject: str, page_number: int) -> dict:
     return data
 
 
-def subject_prepare_data(subject: str, raw_data: dict) -> list:
+def data_prepare(subject: str, raw_data: dict) -> list:
     """ Returns only the necessary data for a given subject. """
     def needed_data_get(data_name: str) -> list:
         if subject == c.SUBJECT.PLANETS:

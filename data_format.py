@@ -11,7 +11,7 @@ import utilities as util
 
 # -------------------------------------------------- main functions ---------------------------------------------------
 
-def subject_format_data(subject: str, data: list) -> list:
+def data_format(subject: str, data: list) -> list:
     """ Returns formatted the subject data. """
     locale.setlocale(locale.LC_ALL, '')
 
