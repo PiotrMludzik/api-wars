@@ -35,11 +35,11 @@ def column_names_format(column_names: list) -> list:
 
 # ------------------------------------------------- format functions --------------------------------------------------
 
-def _format_diameter(data):
+def _format_diameter(data: str) -> str:
     return '{:n} km'.format(int(data)) if data != 'unknown' else data
 
 
-def _format_water(data):
+def _format_water(data: str) -> str:
     if data == 'unknown':
         return data
     if data == '0':
@@ -48,5 +48,5 @@ def _format_water(data):
     return f'{data}%'
 
 
-def _format_population(data):
+def _format_population(data: str) -> str:
     return '{:n} people'.format(int(data)) if data != 'unknown' else data
