@@ -27,6 +27,12 @@ def subject_format_data(subject: str, data: list) -> list:
             item[c.KEY.STARSHIPS.LENGTH] = _format_length(item[c.KEY.STARSHIPS.LENGTH])
             item[c.KEY.STARSHIPS.ATSP] = _format_atsp(item[c.KEY.STARSHIPS.ATSP])
             item[c.KEY.STARSHIPS.MGLT] = _format_mglt(item[c.KEY.STARSHIPS.MGLT])
+        elif subject == c.SUBJECT.VEHICLES:
+            item[c.KEY.VEHICLES.CREW] = _format_crew_and_passengers(item[c.KEY.VEHICLES.CREW])
+            item[c.KEY.VEHICLES.PASSENGERS] = _format_crew_and_passengers(item[c.KEY.VEHICLES.PASSENGERS])
+            item[c.KEY.VEHICLES.CARGO] = _format_cargo(item[c.KEY.VEHICLES.CARGO])
+            item[c.KEY.VEHICLES.LENGTH] = _format_length(item[c.KEY.VEHICLES.LENGTH])
+            item[c.KEY.VEHICLES.ATSP] = _format_atsp(item[c.KEY.VEHICLES.ATSP])
     return data
 
 
