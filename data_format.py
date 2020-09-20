@@ -37,14 +37,14 @@ def data_format(subject: str, data: list) -> list:
         elif subject == dc.SUBJECT.STARSHIPS:
             item[dc.KEY.STARSHIPS.CREW] = _format_crew_and_passengers(item[dc.KEY.STARSHIPS.CREW])
             item[dc.KEY.STARSHIPS.PASSENGERS] = _format_crew_and_passengers(item[dc.KEY.STARSHIPS.PASSENGERS])
-            item[dc.KEY.STARSHIPS.CARGO] = _format_mass(item[dc.KEY.STARSHIPS.CARGO])
+            item[dc.KEY.STARSHIPS.CARGO] = _format_cargo(item[dc.KEY.STARSHIPS.CARGO])
             item[dc.KEY.STARSHIPS.LENGTH] = _format_length(item[dc.KEY.STARSHIPS.LENGTH])
             item[dc.KEY.STARSHIPS.ATSP] = _format_atsp(item[dc.KEY.STARSHIPS.ATSP])
             item[dc.KEY.STARSHIPS.MGLT] = _format_mglt(item[dc.KEY.STARSHIPS.MGLT])
         elif subject == dc.SUBJECT.VEHICLES:
             item[dc.KEY.VEHICLES.CREW] = _format_crew_and_passengers(item[dc.KEY.VEHICLES.CREW])
             item[dc.KEY.VEHICLES.PASSENGERS] = _format_crew_and_passengers(item[dc.KEY.VEHICLES.PASSENGERS])
-            item[dc.KEY.VEHICLES.CARGO] = _format_mass(item[dc.KEY.VEHICLES.CARGO])
+            item[dc.KEY.VEHICLES.CARGO] = _format_cargo(item[dc.KEY.VEHICLES.CARGO])
             item[dc.KEY.VEHICLES.LENGTH] = _format_length(item[dc.KEY.VEHICLES.LENGTH])
             item[dc.KEY.VEHICLES.ATSP] = _format_atsp(item[dc.KEY.VEHICLES.ATSP])
         elif subject == dc.SUBJECT.PEOPLE:
@@ -67,6 +67,11 @@ def column_names_format(column_names: list) -> list:
 def _format_atsp(data: str) -> str:
     data = _prepare_integer(data)
     return '{:n} km/h'.format(float(data)) if _valid_number(data) else data
+
+
+def _format_cargo(data: str) -> str:
+    data = _prepare_integer(data)
+    return '{:n} kg'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_crew_and_passengers(data: str) -> str:
