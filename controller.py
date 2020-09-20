@@ -4,7 +4,6 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-import constants as c
 import data_handler as dh
 import data_format as df
 import session
@@ -15,16 +14,8 @@ def data_get(subject: str, page_number: int) -> list:
     data = dh.data_get(subject, page_number)
     pagination_number_set(subject, data['count'])  # 'count' - the number of items in subject
     data = dh.data_prepare(subject, data['results'])  # 'results' - the subject data
-    data = data_replace_links_with_data(subject, data)
+    data = dh.data_replace_links_with_data(data)
     data = df.data_format(subject, data)
-
-    return data
-
-
-def data_replace_links_with_data(subject, data):
-    """ Replaces links to data with the name of the data. """
-    if subject == c.SUBJECT.PEOPLE:
-        return dh.data_replace_links_with_data(data)
 
     return data
 

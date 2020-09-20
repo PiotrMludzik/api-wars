@@ -20,6 +20,8 @@ def data_format(subject: str, data: list) -> list:
             item[c.KEY.PLANETS.DIAMETER] = _format_diameter(item[c.KEY.PLANETS.DIAMETER])
             item[c.KEY.PLANETS.WATER] = _format_water(item[c.KEY.PLANETS.WATER])
             item[c.KEY.PLANETS.POPULATION] = _format_population(item[c.KEY.PLANETS.POPULATION])
+            item[c.KEY.PLANETS.ROTATION] = _format_rotation(item[c.KEY.PLANETS.ROTATION])
+            item[c.KEY.PLANETS.ORBITAL] = _format_orbital(item[c.KEY.PLANETS.ORBITAL])
         elif subject == c.SUBJECT.STARSHIPS:
             item[c.KEY.STARSHIPS.CREW] = _format_crew_and_passengers(item[c.KEY.STARSHIPS.CREW])
             item[c.KEY.STARSHIPS.PASSENGERS] = _format_crew_and_passengers(item[c.KEY.STARSHIPS.PASSENGERS])
@@ -67,6 +69,9 @@ def _format_crew_and_passengers(data: str) -> str:
 
 def _format_diameter(data: str) -> str:
     data = _prepare_integer(data)
+    if data == '0':
+        return 'unknown'
+
     return '{:n} km'.format(int(data)) if _valid_number(data) else data
 
 
@@ -85,9 +90,25 @@ def _format_mglt(data: str) -> str:
     return '{:n} mglt/h'.format(float(data)) if _valid_number(data) else data
 
 
+def _format_orbital(data: str) -> str:
+    data = _prepare_integer(data)
+    if data == '0':
+        return 'unknown'
+
+    return '{:n} days'.format(int(data)) if _valid_number(data) else data
+
+
 def _format_population(data: str) -> str:
     data = _prepare_integer(data)
     return '{:n} people'.format(int(data)) if _valid_number(data) else data
+
+
+def _format_rotation(data: str) -> str:
+    data = _prepare_integer(data)
+    if data == '0':
+        return 'unknown'
+
+    return '{:n} hours'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_water(data: str) -> str:

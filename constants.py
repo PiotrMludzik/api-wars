@@ -28,8 +28,12 @@ class _Key:
     class Planets:
         CLIMATE = 'climate'
         DIAMETER = 'diameter'
+        GRAVITY = 'gravity'
         NAME = 'name'
+        ORBITAL = 'orbital_period'
         POPULATION = 'population'
+        RESIDENTS = 'residents'
+        ROTATION = 'rotation_period'
         TERRAIN = 'terrain'
         WATER = 'surface_water'
 
@@ -39,10 +43,12 @@ class _Key:
         CLASS = 'starship_class'
         CREW = 'crew'
         LENGTH = 'length'
+        MANUFACTURER = 'manufacturer'
         MGLT = 'MGLT'
         MODEL = 'model'
         NAME = 'name'
         PASSENGERS = 'passengers'
+        PILOTS = 'pilots'
 
     class Vehicles:
         ATSP = 'max_atmosphering_speed'
@@ -53,17 +59,20 @@ class _Key:
         MODEL = 'model'
         NAME = 'name'
         PASSENGERS = 'passengers'
+        PILOTS = 'pilots'
 
     class People:
         BIRTH = 'birth_year'
+        EYE = 'eye_color'
         GENDER = 'gender'
+        HAIR = 'hair_color'
         HEIGHT = 'height'
         HOMEWORLD = 'homeworld'
         MASS = 'mass'
         NAME = 'name'
         PILOTED_STARSHIPS = 'starships'
         PILOTED_VEHICLES = 'vehicles'
-
+        SKIN = 'skin_color'
 
     PLANETS = Planets()
     STARSHIPS = Starships()
@@ -82,18 +91,24 @@ class _Data:
         KEY.PLANETS.CLIMATE,
         KEY.PLANETS.TERRAIN,
         KEY.PLANETS.WATER,
-        KEY.PLANETS.POPULATION
+        KEY.PLANETS.ROTATION,
+        KEY.PLANETS.ORBITAL,
+        KEY.PLANETS.GRAVITY,
+        KEY.PLANETS.POPULATION,
+        KEY.PLANETS.RESIDENTS
     ]
     STARSHIPS = [
         KEY.STARSHIPS.NAME,
         KEY.STARSHIPS.MODEL,
         KEY.STARSHIPS.CLASS,
+        KEY.STARSHIPS.MANUFACTURER,
         KEY.STARSHIPS.CREW,
         KEY.STARSHIPS.PASSENGERS,
         KEY.STARSHIPS.CARGO,
         KEY.STARSHIPS.LENGTH,
         KEY.STARSHIPS.ATSP,
-        KEY.STARSHIPS.MGLT
+        KEY.STARSHIPS.MGLT,
+        KEY.STARSHIPS.PILOTS
     ]
     VEHICLES = [
         KEY.VEHICLES.NAME,
@@ -103,12 +118,16 @@ class _Data:
         KEY.VEHICLES.PASSENGERS,
         KEY.VEHICLES.CARGO,
         KEY.VEHICLES.LENGTH,
-        KEY.VEHICLES.ATSP
+        KEY.VEHICLES.ATSP,
+        KEY.STARSHIPS.PILOTS
     ]
     PEOPLE = [
         KEY.PEOPLE.NAME,
         KEY.PEOPLE.BIRTH,
         KEY.PEOPLE.GENDER,
+        KEY.PEOPLE.EYE,
+        KEY.PEOPLE.HAIR,
+        KEY.PEOPLE.SKIN,
         KEY.PEOPLE.HEIGHT,
         KEY.PEOPLE.MASS,
         KEY.PEOPLE.HOMEWORLD,
