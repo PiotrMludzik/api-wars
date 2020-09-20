@@ -30,6 +30,8 @@ def subject_prepare_data(subject: str, raw_data: dict) -> list:
             data_name = c.DATA.STARSHIPS
         elif subject == c.SUBJECT.VEHICLES:
             data_name = c.DATA.VEHICLES
+        elif subject == c.SUBJECT.PEOPLE:
+            data_name = c.DATA.PEOPLE
         else:
             raise ValueError(f'Needed data for {subject} not found.')
 
@@ -67,6 +69,8 @@ def column_names_get(subject) -> list:
         return c.DATA.STARSHIPS.copy()
     elif subject == c.SUBJECT.VEHICLES:
         return c.DATA.VEHICLES.copy()
+    elif subject == c.SUBJECT.PEOPLE:
+        return c.DATA.PEOPLE.copy()
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
 

@@ -9,6 +9,7 @@ class _Subject:
     PLANETS = 'planets'
     STARSHIPS = 'starships'
     VEHICLES = 'vehicles'
+    PEOPLE = 'people'
 
 
 SUBJECT = _Subject()
@@ -45,9 +46,21 @@ class _Key:
         NAME = 'name'
         PASSENGERS = 'passengers'
 
+    class People:
+        BIRTH = 'birth_year'
+        GENDER = 'gender'
+        HEIGHT = 'height'
+        HOMEWORLD = 'homeworld'
+        MASS = 'mass'
+        NAME = 'name'
+        PILOTED_STARSHIPS = 'starships'
+        PILOTED_VEHICLES = 'vehicles'
+
+
     PLANETS = Planets()
     STARSHIPS = Starships()
     VEHICLES = Vehicles()
+    PEOPLE = People()
 
 
 KEY = _Key()
@@ -83,6 +96,16 @@ class _Data:
         KEY.VEHICLES.CARGO,
         KEY.VEHICLES.LENGTH,
         KEY.VEHICLES.ATSP
+    ]
+    PEOPLE = [
+        KEY.PEOPLE.NAME,
+        KEY.PEOPLE.BIRTH,
+        KEY.PEOPLE.GENDER,
+        KEY.PEOPLE.HEIGHT,
+        KEY.PEOPLE.MASS,
+        KEY.PEOPLE.HOMEWORLD,
+        KEY.PEOPLE.PILOTED_STARSHIPS,
+        KEY.PEOPLE.PILOTED_VEHICLES
     ]
 
 
