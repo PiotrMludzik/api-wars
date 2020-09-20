@@ -51,7 +51,7 @@ def data_prepare(subject: str, raw_data: dict) -> list:
 
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
-def column_names_get(subject) -> list:
+def column_names_get(subject: str) -> list:
     """ Returns column names. """
     if subject == c.SUBJECT.PLANETS:
         return c.DATA.PLANETS.copy()
@@ -74,7 +74,7 @@ def column_names_prepare(raw_names: list) -> list:
     return [name.replace('_', ' ').capitalize() for name in raw_names]
 
 
-def page_pagination_number_get(items_number):
+def page_pagination_number_get(items_number: int) -> int:
     """
         Calculates the number of pages of pagination.
         The result is rounded up from the formula:
