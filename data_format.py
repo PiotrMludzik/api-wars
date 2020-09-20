@@ -23,14 +23,14 @@ def subject_format_data(subject: str, data: list) -> list:
         elif subject == c.SUBJECT.STARSHIPS:
             item[c.KEY.STARSHIPS.CREW] = _format_crew_and_passengers(item[c.KEY.STARSHIPS.CREW])
             item[c.KEY.STARSHIPS.PASSENGERS] = _format_crew_and_passengers(item[c.KEY.STARSHIPS.PASSENGERS])
-            item[c.KEY.STARSHIPS.CARGO] = _format_cargo(item[c.KEY.STARSHIPS.CARGO])
+            item[c.KEY.STARSHIPS.CARGO] = _format_mass(item[c.KEY.STARSHIPS.CARGO])
             item[c.KEY.STARSHIPS.LENGTH] = _format_length(item[c.KEY.STARSHIPS.LENGTH])
             item[c.KEY.STARSHIPS.ATSP] = _format_atsp(item[c.KEY.STARSHIPS.ATSP])
             item[c.KEY.STARSHIPS.MGLT] = _format_mglt(item[c.KEY.STARSHIPS.MGLT])
         elif subject == c.SUBJECT.VEHICLES:
             item[c.KEY.VEHICLES.CREW] = _format_crew_and_passengers(item[c.KEY.VEHICLES.CREW])
             item[c.KEY.VEHICLES.PASSENGERS] = _format_crew_and_passengers(item[c.KEY.VEHICLES.PASSENGERS])
-            item[c.KEY.VEHICLES.CARGO] = _format_cargo(item[c.KEY.VEHICLES.CARGO])
+            item[c.KEY.VEHICLES.CARGO] = _format_mass(item[c.KEY.VEHICLES.CARGO])
             item[c.KEY.VEHICLES.LENGTH] = _format_length(item[c.KEY.VEHICLES.LENGTH])
             item[c.KEY.VEHICLES.ATSP] = _format_atsp(item[c.KEY.VEHICLES.ATSP])
     return data
@@ -47,21 +47,9 @@ def column_names_format(column_names: list) -> list:
 
 # ------------------------------------------------- format functions --------------------------------------------------
 
-def _format_diameter(data: str) -> str:
+def _format_atsp(data: str) -> str:
     data = _prepare_integer(data)
-    return '{:n} km'.format(int(data)) if _valid_number(data) else data
-
-
-def _format_water(data: str) -> str:
-    if data == '0':
-        return 'no water'
-
-    return '{:n}%'.format(float(data)) if _valid_number(data) else data
-
-
-def _format_population(data: str) -> str:
-    data = _prepare_integer(data)
-    return '{:n} people'.format(int(data)) if _valid_number(data) else data
+    return '{:n} km/h'.format(float(data)) if _valid_number(data) else data
 
 
 def _format_crew_and_passengers(data: str) -> str:
@@ -74,9 +62,9 @@ def _format_crew_and_passengers(data: str) -> str:
     return '{:n} people'.format(int(data)) if _valid_number(data) else data
 
 
-def _format_cargo(data: str) -> str:
+def _format_diameter(data: str) -> str:
     data = _prepare_integer(data)
-    return '{:n} kg'.format(int(data)) if _valid_number(data) else data
+    return '{:n} km'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_length(data: str) -> str:
@@ -84,14 +72,26 @@ def _format_length(data: str) -> str:
     return '{:n} m'.format(float(data)) if _valid_number(data) else data
 
 
-def _format_atsp(data: str) -> str:
+def _format_mass(data: str) -> str:
     data = _prepare_integer(data)
-    return '{:n} km/h'.format(float(data)) if _valid_number(data) else data
+    return '{:n} kg'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_mglt(data: str) -> str:
     data = _prepare_integer(data)
     return '{:n} mglt/h'.format(float(data)) if _valid_number(data) else data
+
+
+def _format_population(data: str) -> str:
+    data = _prepare_integer(data)
+    return '{:n} people'.format(int(data)) if _valid_number(data) else data
+
+
+def _format_water(data: str) -> str:
+    if data == '0':
+        return 'no water'
+
+    return '{:n}%'.format(float(data)) if _valid_number(data) else data
 
 
 # -------------------------------------------------- other functions --------------------------------------------------
