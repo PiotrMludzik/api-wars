@@ -63,11 +63,11 @@ def subjects_get_list() -> list:
 def column_names_get(subject) -> list:
     """ Returns column names. """
     if subject == c.SUBJECT.PLANETS:
-        return c.DATA.PLANETS
+        return c.DATA.PLANETS.copy()
     elif subject == c.SUBJECT.STARSHIPS:
-        return c.DATA.STARSHIPS
+        return c.DATA.STARSHIPS.copy()
     elif subject == c.SUBJECT.VEHICLES:
-        return c.DATA.VEHICLES
+        return c.DATA.VEHICLES.copy()
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
 
