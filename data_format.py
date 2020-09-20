@@ -33,6 +33,9 @@ def data_format(subject: str, data: list) -> list:
             item[c.KEY.VEHICLES.CARGO] = _format_mass(item[c.KEY.VEHICLES.CARGO])
             item[c.KEY.VEHICLES.LENGTH] = _format_length(item[c.KEY.VEHICLES.LENGTH])
             item[c.KEY.VEHICLES.ATSP] = _format_atsp(item[c.KEY.VEHICLES.ATSP])
+        elif subject == c.SUBJECT.PEOPLE:
+            item[c.KEY.PEOPLE.HEIGHT] = _format_length(item[c.KEY.PEOPLE.HEIGHT])
+            item[c.KEY.PEOPLE.MASS] = _format_mass(item[c.KEY.PEOPLE.MASS])
     return data
 
 
@@ -73,8 +76,8 @@ def _format_length(data: str) -> str:
 
 
 def _format_mass(data: str) -> str:
-    data = _prepare_integer(data)
-    return '{:n} kg'.format(int(data)) if _valid_number(data) else data
+    data = _prepare_float(data)
+    return '{:n} kg'.format(float(data)) if _valid_number(data) else data
 
 
 def _format_mglt(data: str) -> str:

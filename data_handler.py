@@ -23,14 +23,14 @@ def data_get(subject: str, page_number: int) -> dict:
 
 def data_prepare(subject: str, raw_data: dict) -> list:
     """ Returns only the necessary data for a given subject. """
-    def needed_data_get(data_name: str) -> list:
-        if subject == c.SUBJECT.PLANETS:
+    def needed_data_get(subject_name: str) -> list:
+        if subject_name == c.SUBJECT.PLANETS:
             data_name = c.DATA.PLANETS
-        elif subject == c.SUBJECT.STARSHIPS:
+        elif subject_name == c.SUBJECT.STARSHIPS:
             data_name = c.DATA.STARSHIPS
-        elif subject == c.SUBJECT.VEHICLES:
+        elif subject_name == c.SUBJECT.VEHICLES:
             data_name = c.DATA.VEHICLES
-        elif subject == c.SUBJECT.PEOPLE:
+        elif subject_name == c.SUBJECT.PEOPLE:
             data_name = c.DATA.PEOPLE
         else:
             raise ValueError(f'Needed data for {subject} not found.')
@@ -47,6 +47,32 @@ def data_prepare(subject: str, raw_data: dict) -> list:
         prepared_data.append(prepared_item)
 
     return prepared_data
+
+
+def data_replace_links_with_data(data: list) -> list:
+    """ Replaces links to data with the name of the data. """
+    def replace_link_data(link: str) -> str:
+        """ Returns a name of thing. """
+        return swapi.get_data_name(link)
+
+    def unpack_list_data(lst: list) -> str:
+        """ Converts an items on a list to a string. """
+        return ', '.join(lst)
+
+    # ------------- data_replace_links_with_data() -------------
+    for record in data:
+        for key, value in record.items():
+            if type(value) == list:
+                for index in range(len(value)):
+                    if swapi.has_api_url(value[index]):
+                        value[index] = replace_link_data(value[index])
+
+                record[key] = unpack_list_data(record[key])
+            else:
+                if swapi.has_api_url(value):
+                    record[key] = replace_link_data(record[key])
+
+    return data
 
 
 # ------------------------------------------------ other data handlers ------------------------------------------------
