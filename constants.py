@@ -6,13 +6,21 @@
 
 # Topics to display.
 class _Subject:
+    PEOPLE = 'people'
     PLANETS = 'planets'
     STARSHIPS = 'starships'
     VEHICLES = 'vehicles'
-    PEOPLE = 'people'
 
 
 SUBJECT = _Subject()
+
+
+SUBJECT_ORDER = [
+    SUBJECT.PLANETS,
+    SUBJECT.STARSHIPS,
+    SUBJECT.VEHICLES,
+    SUBJECT.PEOPLE
+]
 
 
 # Key names for subject data.

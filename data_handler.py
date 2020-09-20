@@ -49,16 +49,6 @@ def subject_prepare_data(subject: str, raw_data: dict) -> list:
     return prepared_data
 
 
-def subjects_get_list() -> list:
-    """ Returns a subject names list. """
-    attributes_list = [a for a in dir(c.SUBJECT) if not a.startswith('__')]
-    values_list = []
-    for attribute in attributes_list:
-        values_list.append(getattr(c.SUBJECT, attribute))
-
-    return values_list
-
-
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
 def column_names_get(subject) -> list:

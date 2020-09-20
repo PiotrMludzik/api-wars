@@ -19,11 +19,6 @@ def subject_get_data(subject: str, page_number: int) -> list:
     return data
 
 
-def subjects_get_list() -> list:
-    """ Returns a subject names list. """
-    return dh.subjects_get_list()
-
-
 def column_names_get(subject) -> list:
     """ Returns column names. """
     column_names = dh.column_names_get(subject)

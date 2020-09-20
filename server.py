@@ -6,11 +6,10 @@
 
 from flask import Flask, render_template, redirect
 import controller as ctrl
+import constants as c
 
 app = Flask(__name__)
 app.secret_key = '#I\'ll be back!:D'  # encrypt session variables
-
-SUBJECT_LIST = ctrl.subjects_get_list()
 
 
 # ---------------------------------------------------- main route -----------------------------------------------------
@@ -28,7 +27,7 @@ def subject_page(subject, page_number):
         'index.html',
         subjectName=subject,
         subjectData=ctrl.subject_get_data(subject, page_number),
-        subjectsList=SUBJECT_LIST,
+        subjectsList=c.SUBJECT_ORDER,
         columnNames=ctrl.column_names_get(subject),
         pages_number=ctrl.pagination_number_get(subject),
         active_page=page_number
