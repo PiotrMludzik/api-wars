@@ -137,10 +137,3 @@ class _Data:
 
 
 DATA = _Data()
-
-
-class _NewColumnName:
-    MGLT = 'Megalights'
-
-
-NEW_COLUMN_NAME = _NewColumnName()

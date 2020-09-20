@@ -4,7 +4,7 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-import constants as c
+import data_constants as dc
 import swapi
 
 
@@ -24,14 +24,14 @@ def data_get(subject: str, page_number: int) -> dict:
 def data_prepare(subject: str, raw_data: dict) -> list:
     """ Returns only the necessary data for a given subject. """
     def needed_data_get(subject_name: str) -> list:
-        if subject_name == c.SUBJECT.PLANETS:
-            data_name = c.DATA.PLANETS
-        elif subject_name == c.SUBJECT.STARSHIPS:
-            data_name = c.DATA.STARSHIPS
-        elif subject_name == c.SUBJECT.VEHICLES:
-            data_name = c.DATA.VEHICLES
-        elif subject_name == c.SUBJECT.PEOPLE:
-            data_name = c.DATA.PEOPLE
+        if subject_name == dc.SUBJECT.PLANETS:
+            data_name = dc.DATA.PLANETS
+        elif subject_name == dc.SUBJECT.STARSHIPS:
+            data_name = dc.DATA.STARSHIPS
+        elif subject_name == dc.SUBJECT.VEHICLES:
+            data_name = dc.DATA.VEHICLES
+        elif subject_name == dc.SUBJECT.PEOPLE:
+            data_name = dc.DATA.PEOPLE
         else:
             raise ValueError(f'Needed data for {subject} not found.')
 
@@ -79,14 +79,14 @@ def data_replace_links_with_data(data: list) -> list:
 
 def column_names_get(subject: str) -> list:
     """ Returns column names. """
-    if subject == c.SUBJECT.PLANETS:
-        return c.DATA.PLANETS.copy()
-    elif subject == c.SUBJECT.STARSHIPS:
-        return c.DATA.STARSHIPS.copy()
-    elif subject == c.SUBJECT.VEHICLES:
-        return c.DATA.VEHICLES.copy()
-    elif subject == c.SUBJECT.PEOPLE:
-        return c.DATA.PEOPLE.copy()
+    if subject == dc.SUBJECT.PLANETS:
+        return dc.DATA.PLANETS.copy()
+    elif subject == dc.SUBJECT.STARSHIPS:
+        return dc.DATA.STARSHIPS.copy()
+    elif subject == dc.SUBJECT.VEHICLES:
+        return dc.DATA.VEHICLES.copy()
+    elif subject == dc.SUBJECT.PEOPLE:
+        return dc.DATA.PEOPLE.copy()
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
 
