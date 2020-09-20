@@ -42,55 +42,75 @@ def column_names_format(column_names: list) -> list:
 # ------------------------------------------------- format functions --------------------------------------------------
 
 def _format_diameter(data: str) -> str:
-    return '{:n} km'.format(int(data)) if data != 'unknown' else data
+    data = _prepare_integer(data)
+    return '{:n} km'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_water(data: str) -> str:
-    if data == 'unknown':
-        return data
     if data == '0':
         return 'no water'
 
-    return f'{data}%'
+    return '{:n}%'.format(float(data)) if _valid_number(data) else data
 
 
 def _format_population(data: str) -> str:
-    return '{:n} people'.format(int(data)) if data != 'unknown' else data
+    data = _prepare_integer(data)
+    return '{:n} people'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_crew_and_passengers(data: str) -> str:
-    data = data.replace(",", "")  # for numbers with the thousand separator
+    data = _prepare_integer(data)
 
-    if data == 'unknown':
-        return data
-    if data == 'n/a':
-        return 'not available'
-    if data == '0':
-        return 'does not carry'
-    if data == '1':
-        return f'{data} person'
-    if data.isdigit():
-        return '{:n} people'.format(int(data))
+    if data == '0': return 'not carry'
+    if data == '1': return f'{data} person'
+    if _data_range(data): return f'{data} people'
 
-    return f'{data} people'
+    return '{:n} people'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_cargo(data: str) -> str:
-    return '{:n} kg'.format(int(data)) if data != 'unknown' else data
+    data = _prepare_integer(data)
+    return '{:n} kg'.format(int(data)) if _valid_number(data) else data
 
 
 def _format_length(data: str) -> str:
-    data = data.replace(",", ".")  # for numbers with the "," thousand separator
-
-    return '{:n} m'.format(float(data)) if data != 'unknown' else data
+    data = _prepare_float(data)
+    return '{:n} m'.format(float(data)) if _valid_number(data) else data
 
 
 def _format_atsp(data: str) -> str:
-    if data == 'n/a':
-        return 'not available'
-
-    return '{:n} km/h'.format(float(data)) if data != 'unknown' else data
+    data = _prepare_integer(data)
+    return '{:n} km/h'.format(float(data)) if _valid_number(data) else data
 
 
 def _format_mglt(data: str) -> str:
-    return '{:n} mglt/h'.format(float(data)) if data != 'unknown' else data
+    data = _prepare_integer(data)
+    return '{:n} mglt/h'.format(float(data)) if _valid_number(data) else data
+
+
+# -------------------------------------------------- other functions --------------------------------------------------
+
+def _data_range(data: str) -> bool:
+    """ Checks if a string data are a numbers in range. """
+    return True if data.find('-') != -1 else False
+
+
+def _prepare_integer(data: str) -> str:
+    """ Removes unnecessary characters from the string representing an integer """
+    return data.replace(",", "")  # for numbers with the thousand separator
+
+
+def _prepare_float(data: str) -> str:
+    """ Removes unnecessary characters from the string representing an integer """
+    return data.replace(",", ".")  # for numbers with coma ","
+
+
+def _valid_number(data: str) -> bool:
+    """ Checks if a data is valid integer or float number. """
+    try:
+        if data.isdigit():
+            return isinstance(int(data), int)
+        else:
+            return isinstance(float(data), float)
+    except ValueError:
+        return False
