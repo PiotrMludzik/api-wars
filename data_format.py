@@ -26,9 +26,9 @@ def subject_format_data(subject: str, data: list) -> list:
 
 def column_names_format(column_names: list) -> list:
     """ Return a formatted column name if necessary. """
-    MEGALIGHTS = c.KEY.STARSHIPS.MEGALIGHTS
-    if MEGALIGHTS in column_names:
-        column_names = util.change_list_value(column_names, MEGALIGHTS, c.NEW_COLUMN_NAME.MEGALIGHTS)
+    MGlT = c.KEY.STARSHIPS.MGLT
+    if MGlT in column_names:
+        column_names = util.change_list_value(column_names, MGlT, c.NEW_COLUMN_NAME.MGLT)
 
     return column_names
 

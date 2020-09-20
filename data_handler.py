@@ -6,7 +6,6 @@
 
 import constants as c
 import swapi
-import utilities as util
 
 
 # --------------------------------------------------- data handlers ---------------------------------------------------

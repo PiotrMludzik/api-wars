@@ -25,18 +25,18 @@ class _Key:
         WATER = 'surface_water'
 
     class Starships:
-        ATSPEED = 'max_atmosphering_speed'
+        ATSP = 'max_atmosphering_speed'
         CARGO = 'cargo_capacity'
         CLASS = 'starship_class'
         CREW = 'crew'
         LENGTH = 'length'
-        MEGALIGHTS = 'MGLT'
+        MGLT = 'MGLT'
         MODEL = 'model'
         NAME = 'name'
         PASSENGERS = 'passengers'
 
     class Vehicles:
-        ATSPEED = 'max_atmosphering_speed'
+        ATSP = 'max_atmosphering_speed'
         CARGO = 'cargo_capacity'
         CLASS = 'vehicle_class'
         CREW = 'crew'
@@ -71,8 +71,8 @@ class _Data:
         KEY.STARSHIPS.PASSENGERS,
         KEY.STARSHIPS.CARGO,
         KEY.STARSHIPS.LENGTH,
-        KEY.STARSHIPS.ATSPEED,
-        KEY.STARSHIPS.MEGALIGHTS
+        KEY.STARSHIPS.ATSP,
+        KEY.STARSHIPS.MGLT
     ]
     VEHICLES = [
         KEY.VEHICLES.NAME,
@@ -82,7 +82,7 @@ class _Data:
         KEY.VEHICLES.PASSENGERS,
         KEY.VEHICLES.CARGO,
         KEY.VEHICLES.LENGTH,
-        KEY.VEHICLES.ATSPEED
+        KEY.VEHICLES.ATSP
     ]
 
 
@@ -90,7 +90,7 @@ DATA = _Data()
 
 
 class _NewColumnName:
-    MEGALIGHTS = 'Megalights'
+    MGLT = 'Megalights'
 
 
 NEW_COLUMN_NAME = _NewColumnName()

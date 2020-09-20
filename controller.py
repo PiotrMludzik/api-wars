@@ -4,11 +4,9 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-import constants as c
 import data_handler as dh
 import data_format as df
 import session
-import utilities as util
 
 
 def subject_get_data(subject: str, page_number: int) -> list:
