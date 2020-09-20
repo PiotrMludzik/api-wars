@@ -20,7 +20,13 @@ def subject_format_data(subject: str, data: list) -> list:
             item[c.KEY.PLANETS.DIAMETER] = _format_diameter(item[c.KEY.PLANETS.DIAMETER])
             item[c.KEY.PLANETS.WATER] = _format_water(item[c.KEY.PLANETS.WATER])
             item[c.KEY.PLANETS.POPULATION] = _format_population(item[c.KEY.PLANETS.POPULATION])
-
+        elif subject == c.SUBJECT.STARSHIPS:
+            item[c.KEY.STARSHIPS.CREW] = _format_crew_and_passengers(item[c.KEY.STARSHIPS.CREW])
+            item[c.KEY.STARSHIPS.PASSENGERS] = _format_crew_and_passengers(item[c.KEY.STARSHIPS.PASSENGERS])
+            item[c.KEY.STARSHIPS.CARGO] = _format_cargo(item[c.KEY.STARSHIPS.CARGO])
+            item[c.KEY.STARSHIPS.LENGTH] = _format_length(item[c.KEY.STARSHIPS.LENGTH])
+            item[c.KEY.STARSHIPS.ATSP] = _format_atsp(item[c.KEY.STARSHIPS.ATSP])
+            item[c.KEY.STARSHIPS.MGLT] = _format_mglt(item[c.KEY.STARSHIPS.MGLT])
     return data
 
 
@@ -50,3 +56,41 @@ def _format_water(data: str) -> str:
 
 def _format_population(data: str) -> str:
     return '{:n} people'.format(int(data)) if data != 'unknown' else data
+
+
+def _format_crew_and_passengers(data: str) -> str:
+    data = data.replace(",", "")  # for numbers with the thousand separator
+
+    if data == 'unknown':
+        return data
+    if data == 'n/a':
+        return 'not available'
+    if data == '0':
+        return 'does not carry'
+    if data == '1':
+        return f'{data} person'
+    if data.isdigit():
+        return '{:n} people'.format(int(data))
+
+    return f'{data} people'
+
+
+def _format_cargo(data: str) -> str:
+    return '{:n} kg'.format(int(data)) if data != 'unknown' else data
+
+
+def _format_length(data: str) -> str:
+    data = data.replace(",", ".")  # for numbers with the "," thousand separator
+
+    return '{:n} m'.format(float(data)) if data != 'unknown' else data
+
+
+def _format_atsp(data: str) -> str:
+    if data == 'n/a':
+        return 'not available'
+
+    return '{:n} km/h'.format(float(data)) if data != 'unknown' else data
+
+
+def _format_mglt(data: str) -> str:
+    return '{:n} mglt/h'.format(float(data)) if data != 'unknown' else data
