@@ -119,7 +119,7 @@ class _Data:
         KEY.VEHICLES.CARGO,
         KEY.VEHICLES.LENGTH,
         KEY.VEHICLES.ATSP,
-        KEY.STARSHIPS.PILOTS
+        KEY.VEHICLES.PILOTS
     ]
     PEOPLE = [
         KEY.PEOPLE.NAME,
@@ -137,3 +137,23 @@ class _Data:
 
 
 DATA = _Data()
+
+
+# The names of the columns that contain the button data.
+class _ColumnWithButton:
+    PLANETS = (
+        KEY.PLANETS.RESIDENTS,
+    )
+    STARSHIPS = (
+        KEY.STARSHIPS.PILOTS,
+    )
+    VEHICLES = (
+        KEY.VEHICLES.PILOTS
+    )
+    PEOPLE = (
+        KEY.PEOPLE.PILOTED_STARSHIPS,
+        KEY.PEOPLE.PILOTED_VEHICLES
+    )
+
+
+COLUMN_WITH_BUTTON = _ColumnWithButton()

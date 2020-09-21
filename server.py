@@ -23,11 +23,18 @@ def index():
 @app.route('/<subject>/<int:page_number>')
 def subject_page(subject, page_number):
     """ Shows a page listing the data specified in the subject variable. """
+    INDEX_NAME, INDEX_DATA = 0, 1
+
+    subject_data = ctrl.data_get(subject, page_number)
+    button_data = ctrl.button_data_get(subject, subject_data)
+
     return render_template(
         'index.html',
         subjectName=subject,
-        subjectData=ctrl.data_get(subject, page_number),
+        subjectData=subject_data,
         subjectsList=dc.SUBJECT_ORDER,
+        buttonColumnName=button_data[INDEX_NAME],
+        buttonColumnData=button_data[INDEX_DATA],
         columnNames=ctrl.column_names_get(subject),
         pages_number=ctrl.pagination_number_get(subject),
         active_page=page_number

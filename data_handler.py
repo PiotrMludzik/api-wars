@@ -49,30 +49,30 @@ def data_prepare(subject: str, raw_data: dict) -> list:
     return prepared_data
 
 
-def data_replace_links_with_data(data: list) -> list:
-    """ Replaces links to data with the name of the data. """
-    def replace_link_data(link: str) -> str:
-        """ Returns a name of thing. """
-        return swapi.get_data_name(link)
+# -------------------------------------------------- button handlers --------------------------------------------------
 
-    def unpack_list_data(lst: list) -> str:
-        """ Converts an items on a list to a string. """
-        return ', '.join(lst)
+def button_data_get_names(subject: str) -> tuple:
+    """ Returns the names of data for the corresponding column for button insertion. """
+    if subject == dc.SUBJECT.PLANETS:
+        return dc.COLUMN_WITH_BUTTON.PLANETS
+    elif subject == dc.SUBJECT.STARSHIPS:
+        return dc.COLUMN_WITH_BUTTON.STARSHIPS
+    elif subject == dc.SUBJECT.VEHICLES:
+        return dc.COLUMN_WITH_BUTTON.VEHICLES
+    elif subject == dc.SUBJECT.PEOPLE:
+        return dc.COLUMN_WITH_BUTTON.PEOPLE
+    else:
+        raise ValueError(f'There are no names for the button data in the {subject} subject.')
 
-    # ------------- data_replace_links_with_data() -------------
-    for record in data:
-        for key, value in record.items():
-            if type(value) == list:
-                for index in range(len(value)):
-                    if swapi.has_api_url(value[index]):
-                        value[index] = replace_link_data(value[index])
 
-                record[key] = unpack_list_data(record[key])
-            else:
-                if swapi.has_api_url(value):
-                    record[key] = replace_link_data(record[key])
+def button_data_get_data(subject_data: list, column_names: tuple) -> tuple:
+    """ Returns the data tuple for the corresponding column for button insertion. """
+    button_data = []
+    for data_key in column_names:
+        for index in range(len(subject_data)):
+            button_data.append(subject_data[index][data_key])
 
-    return data
+    return tuple(button_data)
 
 
 # ------------------------------------------------ other data handlers ------------------------------------------------

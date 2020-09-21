@@ -14,10 +14,17 @@ def data_get(subject: str, page_number: int) -> list:
     data = dh.data_get(subject, page_number)
     pagination_number_set(subject, data['count'])  # 'count' - the number of items in subject
     data = dh.data_prepare(subject, data['results'])  # 'results' - the subject data
-    data = dh.data_replace_links_with_data(data)
     data = df.data_format(subject, data)
 
     return data
+
+
+def button_data_get(subject, subject_data: list) -> tuple:
+    """ Returns the button data (a tuple names and a data) for the proper column. """
+    btn_name = dh.button_data_get_names(subject)
+    btn_data = dh.button_data_get_data(subject_data, btn_name)
+
+    return btn_name, btn_data
 
 
 def column_names_get(subject) -> list:
