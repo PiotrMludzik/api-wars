@@ -15,8 +15,29 @@
         <tbody>
             {% for item in subjectData %}
                 <tr>
+                    {% set loopNumber = loop %}
                     {% for key, value in item.items() %}
-                        <td>{{ value }}</td>
+                        <td class="{{ key }}">
+                            {% for columnName in buttonColumnName %}
+                                <!-- Button instead of the data -->
+                                {% if key == columnName %}
+                                    {% set buttonDataLength = buttonColumnData[loopNumber.index - 1]|length %}
+                                    {% if buttonDataLength != 0 %}
+                                        <!-- Insert button data -->
+                                        <button type="button" class="btn btn-sm btn-secondary">
+                                            {% if buttonDataLength == 1 %}
+                                                1 {{ buttonColumnName[0][:-1] }}
+                                            {% else %}
+                                                {{ buttonDataLength }} {{ buttonColumnName[0] }}
+                                            {% endif %}
+                                        </button>
+                                    {% endif %}
+                                <!-- Data in cell -->
+                                {% else %}
+                                    {{ value }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
                     {% endfor %}
                 </tr>
             {% endfor %}

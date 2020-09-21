@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Bootstrap: required meta tags and CSS -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.min.css') }}">
@@ -83,8 +82,8 @@
         {% block contents %}{% endblock %}
     </div>
 
-    <!-- Bootstrap: required javascripts -->
     <script src="{{ url_for('static', filename='bootstrap/jquery-3.3.1.slim.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
