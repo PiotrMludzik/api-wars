@@ -7,3 +7,7 @@ body {
 #contents {
     padding: 1em;
 }
+
+.residents, .pilots, .starships, .vehicles {
+    text-align: center;
+}
