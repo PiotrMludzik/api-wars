@@ -20,7 +20,7 @@ def data_get(subject: str, page_number: int) -> list:
 
 
 def button_data_get(subject, subject_data: list) -> tuple:
-    """ Returns the button data (a tuple names and a data) for the proper column. """
+    """ Returns the button data (a tuple names and a dictionary of the data) for the proper column. """
     btn_name = dh.button_data_get_names(subject)
     btn_data = dh.button_data_get_data(subject_data, btn_name)
 

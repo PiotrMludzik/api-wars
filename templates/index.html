@@ -13,30 +13,26 @@
         </thead>
         <!-- Subject data -->
         <tbody>
-            {% for item in subjectData %}
+            {% for item in subjectData %}  <!-- all data -->
                 <tr>
-                    {% set loopNumber = loop %}
-                    {% for key, value in item.items() %}
+                    {% set firstLoop = loop %}
+                    {% for key, value in item.items() %}  <!-- record -->
                         <td class="{{ key }}">
-                            {% for columnName in buttonColumnName %}
-                                <!-- Button instead of the data -->
-                                {% if key == columnName %}
-                                    {% set buttonDataLength = buttonColumnData[loopNumber.index - 1]|length %}
-                                    {% if buttonDataLength != 0 %}
-                                        <!-- Insert button data -->
-                                        <button type="button" class="btn btn-sm btn-secondary">
-                                            {% if buttonDataLength == 1 %}
-                                                1 {{ buttonColumnName[0][:-1] }}
-                                            {% else %}
-                                                {{ buttonDataLength }} {{ buttonColumnName[0] }}
-                                            {% endif %}
-                                        </button>
-                                    {% endif %}
-                                <!-- Data in cell -->
-                                {% else %}
-                                    {{ value }}
+                            {% if key in buttonColumnName %}  <!-- column with button -->
+                                {% set dataNumbers = buttonColumnData[firstLoop.index - 1][key]|length %}
+                                {% if dataNumbers > 0 %}
+                                    <!-- Insert button data -->
+                                    <button type="button" class="btn btn-sm btn-secondary">
+                                        {% if dataNumbers == 1 %}
+                                            1 {{ key[:-1] }}
+                                        {% else %}
+                                            {{ dataNumbers }} {{ key }}
+                                        {% endif %}
+                                    </button>
                                 {% endif %}
-                            {% endfor %}
+                            {% else %}  <!-- data in the cell -->
+                                {{ value }}
+                            {% endif %}
                         </td>
                     {% endfor %}
                 </tr>

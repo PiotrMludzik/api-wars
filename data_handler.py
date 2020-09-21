@@ -68,9 +68,12 @@ def button_data_get_names(subject: str) -> tuple:
 def button_data_get_data(subject_data: list, column_names: tuple) -> tuple:
     """ Returns the data tuple for the corresponding column for button insertion. """
     button_data = []
-    for data_key in column_names:
-        for index in range(len(subject_data)):
-            button_data.append(subject_data[index][data_key])
+    for record in subject_data:
+        record_data = {}
+        for key in column_names:
+            record_data[key] = (record[key])
+
+        button_data.append(record_data)
 
     return tuple(button_data)
 
