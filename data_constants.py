@@ -148,7 +148,7 @@ class _ColumnWithButton:
         KEY.STARSHIPS.PILOTS,
     )
     VEHICLES = (
-        KEY.VEHICLES.PILOTS
+        KEY.VEHICLES.PILOTS,
     )
     PEOPLE = (
         KEY.PEOPLE.PILOTED_STARSHIPS,
