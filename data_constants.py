@@ -15,12 +15,12 @@ class _Subject:
 SUBJECT = _Subject()
 
 
-SUBJECT_ORDER = [
+SUBJECT_ORDER = (
     SUBJECT.PLANETS,
     SUBJECT.STARSHIPS,
     SUBJECT.VEHICLES,
     SUBJECT.PEOPLE
-]
+)
 
 
 # Key names for subject data.
@@ -85,7 +85,7 @@ KEY = _Key()
 
 # Constants for the column names and their sort order.
 class _Data:
-    PLANETS = [
+    PLANETS = (
         KEY.PLANETS.NAME,
         KEY.PLANETS.DIAMETER,
         KEY.PLANETS.CLIMATE,
@@ -96,8 +96,8 @@ class _Data:
         KEY.PLANETS.GRAVITY,
         KEY.PLANETS.POPULATION,
         KEY.PLANETS.RESIDENTS
-    ]
-    STARSHIPS = [
+    )
+    STARSHIPS = (
         KEY.STARSHIPS.NAME,
         KEY.STARSHIPS.MODEL,
         KEY.STARSHIPS.CLASS,
@@ -109,8 +109,8 @@ class _Data:
         KEY.STARSHIPS.ATSP,
         KEY.STARSHIPS.MGLT,
         KEY.STARSHIPS.PILOTS
-    ]
-    VEHICLES = [
+    )
+    VEHICLES = (
         KEY.VEHICLES.NAME,
         KEY.VEHICLES.MODEL,
         KEY.VEHICLES.CLASS,
@@ -120,8 +120,8 @@ class _Data:
         KEY.VEHICLES.LENGTH,
         KEY.VEHICLES.ATSP,
         KEY.VEHICLES.PILOTS
-    ]
-    PEOPLE = [
+    )
+    PEOPLE = (
         KEY.PEOPLE.NAME,
         KEY.PEOPLE.BIRTH,
         KEY.PEOPLE.GENDER,
@@ -133,7 +133,7 @@ class _Data:
         KEY.PEOPLE.HOMEWORLD,
         KEY.PEOPLE.PILOTED_STARSHIPS,
         KEY.PEOPLE.PILOTED_VEHICLES
-    ]
+    )
 
 
 DATA = _Data()

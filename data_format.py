@@ -21,6 +21,7 @@ class _ColumnNameNew:
 NAME = _Name()
 COLUMN_NAME_NEW = _ColumnNameNew()
 
+
 # -------------------------------------------------- main functions ---------------------------------------------------
 
 def data_format(subject: str, data: list) -> list:
@@ -53,11 +54,11 @@ def data_format(subject: str, data: list) -> list:
     return data
 
 
-def column_names_format(column_names: list) -> list:
+def column_names_format(column_names: tuple) -> tuple:
     """ Return a formatted column name if necessary. """
     MGlT = dc.KEY.STARSHIPS.MGLT
     if MGlT in column_names:
-        column_names = util.change_list_value(column_names, MGlT, COLUMN_NAME_NEW.MGLT)
+        column_names = tuple(util.change_list_value(list(column_names), MGlT, COLUMN_NAME_NEW.MGLT))
 
     return column_names
 

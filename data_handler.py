@@ -21,9 +21,9 @@ def data_get(subject: str, page_number: int) -> dict:
     return data
 
 
-def data_prepare(subject: str, raw_data: dict) -> list:
+def data_prepare(subject: str, raw_data: list) -> list:
     """ Returns only the necessary data for a given subject. """
-    def needed_data_get(subject_name: str) -> list:
+    def needed_data_get(subject_name: str) -> tuple:
         if subject_name == dc.SUBJECT.PLANETS:
             data_name = dc.DATA.PLANETS
         elif subject_name == dc.SUBJECT.STARSHIPS:
@@ -65,7 +65,7 @@ def button_data_get_names(subject: str) -> tuple:
         raise ValueError(f'There are no names for the button data in the {subject} subject.')
 
 
-def button_data_get_data(subject_data: list, column_names: tuple) -> tuple:
+def button_data_get_data(subject_data: tuple, column_names: tuple) -> tuple:
     """ Returns the data tuple for the corresponding column for button insertion. """
     button_data = []
     for record in subject_data:
@@ -80,27 +80,27 @@ def button_data_get_data(subject_data: list, column_names: tuple) -> tuple:
 
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
-def column_names_get(subject: str) -> list:
+def column_names_get(subject: str) -> tuple:
     """ Returns column names. """
     if subject == dc.SUBJECT.PLANETS:
-        return dc.DATA.PLANETS.copy()
+        return dc.DATA.PLANETS
     elif subject == dc.SUBJECT.STARSHIPS:
-        return dc.DATA.STARSHIPS.copy()
+        return dc.DATA.STARSHIPS
     elif subject == dc.SUBJECT.VEHICLES:
-        return dc.DATA.VEHICLES.copy()
+        return dc.DATA.VEHICLES
     elif subject == dc.SUBJECT.PEOPLE:
-        return dc.DATA.PEOPLE.copy()
+        return dc.DATA.PEOPLE
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
 
 
-def column_names_prepare(raw_names: list) -> list:
+def column_names_prepare(raw_names: tuple) -> tuple:
     """
-        Returns the list of column names, where:
+        Returns the tuple of column names, where:
             * character '_' is replaced with a space ' ';
             * the first letter in a word is capitalized.
     """
-    return [name.replace('_', ' ').capitalize() for name in raw_names]
+    return tuple([name.replace('_', ' ').capitalize() for name in raw_names])
 
 
 def page_pagination_number_get(items_number: int) -> int:

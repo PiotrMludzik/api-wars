@@ -9,17 +9,17 @@ import data_format as df
 import session
 
 
-def data_get(subject: str, page_number: int) -> list:
+def data_get(subject: str, page_number: int) -> tuple:
     """ Collects the subject data. """
     data = dh.data_get(subject, page_number)
     pagination_number_set(subject, data['count'])  # 'count' - the number of items in subject
     data = dh.data_prepare(subject, data['results'])  # 'results' - the subject data
     data = df.data_format(subject, data)
 
-    return data
+    return tuple(data)
 
 
-def button_data_get(subject, subject_data: list) -> tuple:
+def button_data_get(subject: str, subject_data: tuple) -> tuple:
     """ Returns the button data (a tuple names and a dictionary of the data) for the proper column. """
     btn_name = dh.button_data_get_names(subject)
     btn_data = dh.button_data_get_data(subject_data, btn_name)
@@ -27,7 +27,7 @@ def button_data_get(subject, subject_data: list) -> tuple:
     return btn_name, btn_data
 
 
-def column_names_get(subject) -> list:
+def column_names_get(subject: str) -> tuple:
     """ Returns column names. """
     column_names = dh.column_names_get(subject)
     column_names = df.column_names_format(column_names)
@@ -36,12 +36,12 @@ def column_names_get(subject) -> list:
     return column_names
 
 
-def pagination_number_set(page_name, items_number):
+def pagination_number_set(page_name: str, items_number: int):
     """ Sets the number of subpages (pagination of the page) and remembers it as variable in the sessions. """
     pagination_number = dh.page_pagination_number_get(items_number)
     session.pagination_number_set(page_name, pagination_number)
 
 
-def pagination_number_get(page_name) -> int:
+def pagination_number_get(page_name: str) -> int:
     """ Gets the pagination number from variable in session. """
     return session.pagination_number_get(page_name)
