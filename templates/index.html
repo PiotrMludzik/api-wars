@@ -29,6 +29,8 @@
                                             {{ dataNumbers }} {{ key }}
                                         {% endif %}
                                     </button>
+                                {% else %}
+                                    No known {{ key }}
                                 {% endif %}
                             {% else %}  <!-- data in the cell -->
                                 {{ value }}
