@@ -9,6 +9,8 @@
     <title>{{ subjectName|capitalize }} | API Wars</title>
 </head>
 <body>
+    <!-- Modal window container -->
+    <div class="modal-container"> </div>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow">
         <div class="navbar-brand">API Wars</div>
@@ -84,6 +86,6 @@
 
     <script src="{{ url_for('static', filename='bootstrap/jquery-3.3.1.slim.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

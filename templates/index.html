@@ -19,14 +19,22 @@
                     {% for key, value in item.items() %}  <!-- record -->
                         <td class="{{ key }}">
                             {% if key in buttonColumnName %}  <!-- column with button -->
-                                {% set dataNumbers = buttonColumnData[firstLoop.index - 1][key]|length %}
-                                {% if dataNumbers > 0 %}
+                                {% set buttonData = buttonColumnData[firstLoop.index - 1][key] %}
+                                {% set buttonDataNumbers = buttonData|length %}
+                                {% if buttonDataNumbers > 0 %}
                                     <!-- Insert button data -->
-                                    <button type="button" class="btn btn-sm btn-secondary">
-                                        {% if dataNumbers == 1 %}
+                                    <button type="button"
+                                            class="btn btn-sm btn-secondary button-data"
+                                            data-toggle="modal"
+                                            data-target="#modal-button-data"
+                                            data-record-name="{{ item.name }}"
+                                            data-button-data-name="{{ key }}"
+                                            data-button-data="{{ buttonData }}"
+                                    >
+                                        {% if buttonDataNumbers == 1 %}
                                             1 {{ key[:-1] }}
                                         {% else %}
-                                            {{ dataNumbers }} {{ key }}
+                                            {{ buttonDataNumbers }} {{ key }}
                                         {% endif %}
                                     </button>
                                 {% else %}
