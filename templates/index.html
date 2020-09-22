@@ -19,23 +19,23 @@
                     {% set firstLoop = loop %}
                     {% for key, value in item.items() %}
                         <td class="{{ key }}">
-                            {% if key in buttonColumnName %}
-                                {% set buttonData = buttonColumnData[firstLoop.index - 1][key] %}
-                                {% set buttonDataNumbers = buttonData|length %}
-                                {% if buttonDataNumbers > 0 %}
-                                    <!-- Insert button data -->
+                            {% if key in buttonDataName %}
+                                {% set btnData = buttonData[firstLoop.index - 1][key] %}
+                                {% set btnDataNumbers = btnData|length %}
+                                {% if btnDataNumbers > 0 %}
+                                    <!-- Button data -->
                                     <button type="button"
                                             class="btn btn-sm btn-secondary button-data"
                                             data-toggle="modal"
                                             data-target="#modal-button-data"
                                             data-record-name="{{ item.name }}"
                                             data-button-data-name="{{ key }}"
-                                            data-button-data="{{ buttonData }}"
+                                            data-button-data="{{ btnData }}"
                                     >
-                                        {% if buttonDataNumbers == 1 %}
+                                        {% if btnDataNumbers == 1 %}
                                             1 {{ key[:-1] }}
                                         {% else %}
-                                            {{ buttonDataNumbers }} {{ key }}
+                                            {{ btnDataNumbers }} {{ key }}
                                         {% endif %}
                                     </button>
                                 {% else %}

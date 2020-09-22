@@ -33,8 +33,8 @@ def subject_page(subject, page_number):
         subjectName=subject,
         subjectData=subject_data,
         subjectsList=dc.SUBJECT_ORDER,
-        buttonColumnName=button_data[INDEX_NAME],
-        buttonColumnData=button_data[INDEX_DATA],
+        buttonDataName=button_data[INDEX_NAME],
+        buttonData=button_data[INDEX_DATA],
         columnNames=ctrl.column_names_get(subject),
         pages_number=ctrl.pagination_number_get(subject),
         active_page=page_number
