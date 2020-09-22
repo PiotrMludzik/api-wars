@@ -15,7 +15,7 @@ export let modal = {
         const targetElement = document.querySelector('.modal-container');
 
         targetElement.innerHTML = modalWindow;
-        initRemoveModalWindowAfterClose();
+        initCleanAfterCloseModalWindow();
 
         function modalWindowGet(buttonData) {
             // Builds the modal window with a data.
@@ -40,8 +40,8 @@ export let modal = {
                 </div>
             `;
         }
-        function initRemoveModalWindowAfterClose () {
-            // Adds the event listeners to close the modal window. After close cleans a html elements.
+        function initCleanAfterCloseModalWindow() {
+            // Adds the event listeners fired when close the modal window to cleans a html elements.
             $('#modal-button-data').on('hidden.bs.modal', function () {
                 $(this).remove();
             });
