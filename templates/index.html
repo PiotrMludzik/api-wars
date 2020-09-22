@@ -11,14 +11,15 @@
                 {% endfor %}
             </tr>
         </thead>
+
         <!-- Subject data -->
         <tbody>
-            {% for item in subjectData %}  <!-- all data -->
+            {% for item in subjectData %}
                 <tr>
                     {% set firstLoop = loop %}
-                    {% for key, value in item.items() %}  <!-- record -->
+                    {% for key, value in item.items() %}
                         <td class="{{ key }}">
-                            {% if key in buttonColumnName %}  <!-- column with button -->
+                            {% if key in buttonColumnName %}
                                 {% set buttonData = buttonColumnData[firstLoop.index - 1][key] %}
                                 {% set buttonDataNumbers = buttonData|length %}
                                 {% if buttonDataNumbers > 0 %}
@@ -40,7 +41,7 @@
                                 {% else %}
                                     No known {{ key }}
                                 {% endif %}
-                            {% else %}  <!-- data in the cell -->
+                            {% else %}
                                 {{ value }}
                             {% endif %}
                         </td>
