@@ -19,10 +19,10 @@
                     {% set firstLoop = loop %}
                     {% for key, value in item.items() %}
                         <td class="{{ key }}">
-                            {% if key in buttonDataName %}
-                                {% set btnData = buttonData[firstLoop.index - 1][key] %}
-                                {% set btnDataNumbers = btnData|length %}
-                                {% if btnDataNumbers > 0 %}
+                            {% if key in button_data.name %}
+                                {% set data = button_data.data[firstLoop.index - 1][key] %}
+                                {% set data_numbers = data|length %}
+                                {% if data_numbers > 0 %}
                                     <!-- Button data -->
                                     <button type="button"
                                             class="btn btn-sm btn-secondary button-data"
@@ -30,12 +30,12 @@
                                             data-target="#modal-button-data"
                                             data-record-name="{{ item.name }}"
                                             data-button-data-name="{{ key }}"
-                                            data-button-data="{{ btnData }}"
+                                            data-button-data="{{ data }}"
                                     >
-                                        {% if btnDataNumbers == 1 %}
+                                        {% if data_numbers == 1 %}
                                             1 {{ key[:-1] }}
                                         {% else %}
-                                            {{ btnDataNumbers }} {{ key }}
+                                            {{ data_numbers }} {{ key }}
                                         {% endif %}
                                     </button>
                                 {% else %}

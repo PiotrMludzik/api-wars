@@ -23,12 +23,12 @@ def data_get(subject: str, page_number: int) -> tuple:
 
 # ------------------------------------------------ button controllers -------------------------------------------------
 
-def button_data_get(subject: str, subject_data: tuple) -> tuple:
-    """ Returns the button data (a tuple names and a dictionary of the data) for the proper column. """
+def button_data_get(subject: str, subject_data: tuple) -> dict:
+    """ Returns the button data needed to handle client-side events. """
     btn_name = dh.button_data_get_names(subject)
     btn_data = dh.button_data_get_data(subject_data, btn_name)
 
-    return btn_name, btn_data
+    return {'name': btn_name, 'data': btn_data}
 
 
 # -------------------------------------------------- api controllers --------------------------------------------------
