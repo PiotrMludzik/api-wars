@@ -1,15 +1,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 //                                                       API Wars
-//                                                     client: main
+//                                                  client: constants
 //                                                        v 1.0
 // --------------------------------------------------------------------------------------------------------------------
 
-import {dom} from "./dom.js";
-
-
-init();
-
-
-function init() {
-    dom.buttonData.initEventListener();
+export const c = {
+    index: {
+        recordName: 0,
+        dataName: 1,
+        data: 2
+    }
 }

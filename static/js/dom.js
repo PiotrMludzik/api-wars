@@ -4,7 +4,10 @@
 //                                                        v 1.0
 // --------------------------------------------------------------------------------------------------------------------
 
+import {c} from './constants.js'
+import {dataHandler} from "./data_handler.js";
 import {modal} from "./modals.js";
+
 
 export let dom = {
     buttonData: {
@@ -20,6 +23,11 @@ export let dom = {
             event.preventDefault();
             const button = event.target;
             const buttonData = buttonDataGet(button);
+
+            dataHandler.api_post(`/api/${buttonData[c.index.dataName]}`, buttonData[c.index.data], function (data) {
+
+            });
+
             modal.Data(button, buttonData);
 
             function buttonDataGet (button) {
