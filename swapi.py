@@ -11,9 +11,12 @@ PAGINATION_NUMBER = 10
 ROOT_URL = 'https://swapi.dev/api/'  # root the https API adress
 
 
-def get_data(url_request: str) -> dict:
+def get_data(url_request: str, full_url: bool = False) -> dict:
     """ Sends a request to the SWAPI API and returns the received response. """
-    return requests.get(ROOT_URL + url_request).json()
+    if not full_url:
+        url_request = ROOT_URL + url_request
+
+    return requests.get(url_request).json()
 
 
 def get_data_name(url_request: str) -> str:

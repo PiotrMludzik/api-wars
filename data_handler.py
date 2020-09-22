@@ -80,8 +80,13 @@ def button_data_get_data(subject_data: tuple, column_names: tuple) -> tuple:
 
 # --------------------------------------------------- api handlers ----------------------------------------------------
 
-def api_data_get():
-    pass
+def api_data_get(request_data: list) -> list:
+    """ Prepares data at the client's request. """
+    response_data = []
+    for url in request_data:
+        response_data.append(swapi.get_data(url, full_url=True))
+
+    return response_data
 
 
 # ------------------------------------------------ other data handlers ------------------------------------------------

@@ -4,10 +4,9 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, jsonify
 import controller as ctrl
 import data_constants as dc
-import utilities as util
 
 
 app = Flask(__name__)
@@ -43,9 +42,10 @@ def subject_page(subject, page_number):
 # ----------------------------------------------------- api route -----------------------------------------------------
 
 @app.route('/<subject>', methods=['POST'])
-@util.json_response
 def api_data(subject):
-    pass
+    """ Receives and responds to the client's request. """
+    response = ctrl.api_data_get(request.get_json())
+    return jsonify(response)
 
 
 # ----------------------------------------------------- main code -----------------------------------------------------
