@@ -36,7 +36,7 @@ def button_data_get(subject: str, subject_data: tuple) -> dict:
 def api_data_get(request_data: dict) -> dict:
     """ Prepares data at the client's request. """
     API_WARS = 'api_wars'
-    if API_WARS not in request_data:
+    if not request_data or API_WARS not in request_data:
         return {'error': 'wrong request data'}
 
     return {API_WARS: dh.api_data_get(request_data[API_WARS])}

@@ -41,8 +41,8 @@ def subject_page(subject, page_number):
 
 # ----------------------------------------------------- api route -----------------------------------------------------
 
-@app.route('/<subject>', methods=['POST'])
-def api_data(subject):
+@app.route('/api', methods=['POST'])
+def api_data():
     """ Receives and responds to the client's request. """
     response = ctrl.api_data_get(request.get_json())
     return jsonify(response)
