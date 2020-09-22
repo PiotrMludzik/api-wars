@@ -96,7 +96,7 @@ def _format_diameter(data: str) -> str:
 
 
 def _format_homeworld(data: str) -> str:
-    return swapi.get_data_name(data)
+    return swapi.get_data_name(data, full_url=True)
 
 
 def _format_length(data: str) -> str:
