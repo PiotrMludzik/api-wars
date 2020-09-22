@@ -9,6 +9,8 @@ import data_format as df
 import session
 
 
+# ------------------------------------------------- data controllers --------------------------------------------------
+
 def data_get(subject: str, page_number: int) -> tuple:
     """ Collects the subject data. """
     data = dh.data_get(subject, page_number)
@@ -19,6 +21,8 @@ def data_get(subject: str, page_number: int) -> tuple:
     return tuple(data)
 
 
+# ------------------------------------------------ button controllers -------------------------------------------------
+
 def button_data_get(subject: str, subject_data: tuple) -> tuple:
     """ Returns the button data (a tuple names and a dictionary of the data) for the proper column. """
     btn_name = dh.button_data_get_names(subject)
@@ -26,6 +30,14 @@ def button_data_get(subject: str, subject_data: tuple) -> tuple:
 
     return btn_name, btn_data
 
+
+# -------------------------------------------------- api controllers --------------------------------------------------
+
+def api_data_get():
+    pass
+
+
+# ------------------------------------------------- other controllers -------------------------------------------------
 
 def column_names_get(subject: str) -> tuple:
     """ Returns column names. """

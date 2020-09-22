@@ -7,6 +7,8 @@
 from flask import Flask, render_template, redirect
 import controller as ctrl
 import data_constants as dc
+import utilities as util
+
 
 app = Flask(__name__)
 app.secret_key = '#I\'ll be back!:D'  # encrypt session variables
@@ -39,6 +41,14 @@ def subject_page(subject, page_number):
         pages_number=ctrl.pagination_number_get(subject),
         active_page=page_number
     )
+
+
+# ----------------------------------------------------- api route -----------------------------------------------------
+
+@app.route('/<subject>', methods=['POST'])
+@util.json_response
+def api_data(subject):
+    pass
 
 
 # ----------------------------------------------------- main code -----------------------------------------------------

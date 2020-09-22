@@ -78,6 +78,12 @@ def button_data_get_data(subject_data: tuple, column_names: tuple) -> tuple:
     return tuple(button_data)
 
 
+# --------------------------------------------------- api handlers ----------------------------------------------------
+
+def api_data_get():
+    pass
+
+
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
 def column_names_get(subject: str) -> tuple:
