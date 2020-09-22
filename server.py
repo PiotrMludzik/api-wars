@@ -32,14 +32,14 @@ def subject_page(subject, page_number):
 
     return render_template(
         'index.html',
-        subjectName=subject,
-        subjectData=subject_data,
-        subjectsList=dc.SUBJECT_ORDER,
+        subjects_list=dc.SUBJECT_ORDER,
+        subject_name=subject,
+        subject_data=subject_data,
         buttonDataName=button_data[INDEX_NAME],
         buttonData=button_data[INDEX_DATA],
-        columnNames=ctrl.column_names_get(subject),
+        column_names=ctrl.column_names_get(subject),
         pages_number=ctrl.pagination_number_get(subject),
-        active_page=page_number
+        page_active=page_number
     )
 
 

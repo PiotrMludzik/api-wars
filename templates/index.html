@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block page_title %}Star Wars {{ subjectName }} list{% endblock %}
+{% block page_title %}Star Wars {{ subject_name }} list{% endblock %}
 {% block contents %}
     <!-- Subject data table -->
     <table class="table table-bordered table-striped">
         <!-- Header names -->
         <thead class="table-dark">
             <tr>
-                {% for name in columnNames %}
+                {% for name in column_names %}
                     <th>{{ name }}</th>
                 {% endfor %}
             </tr>
@@ -14,7 +14,7 @@
 
         <!-- Subject data -->
         <tbody>
-            {% for item in subjectData %}
+            {% for item in subject_data %}
                 <tr>
                     {% set firstLoop = loop %}
                     {% for key, value in item.items() %}
