@@ -65,8 +65,8 @@ def button_data_get_column_names(subject: str) -> tuple:
         raise ValueError(f'There are no column names for the button data in the {subject} subject.')
 
 
-def button_data_get_data(subject_data: tuple, column_names: tuple) -> tuple:
-    """ Returns the data tuple for the corresponding column for button insertion. """
+def button_data_get_data(subject_data: tuple, column_names: tuple) -> list:
+    """ Returns the data list for the corresponding column for button insertion. """
     button_data = []
     for record in subject_data:
         record_data = {}
@@ -75,7 +75,7 @@ def button_data_get_data(subject_data: tuple, column_names: tuple) -> tuple:
 
         button_data.append(record_data)
 
-    return tuple(button_data)
+    return button_data
 
 
 # --------------------------------------------------- api handlers ----------------------------------------------------
