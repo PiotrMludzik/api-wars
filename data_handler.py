@@ -51,7 +51,7 @@ def data_prepare(subject: str, raw_data: list) -> list:
 
 # -------------------------------------------------- button handlers --------------------------------------------------
 
-def button_data_get_names(subject: str) -> tuple:
+def button_data_get_column_names(subject: str) -> tuple:
     """ Returns the names of data for the corresponding column for button insertion. """
     if subject == dc.SUBJECT.PLANETS:
         return dc.COLUMN_WITH_BUTTON.PLANETS
@@ -62,7 +62,7 @@ def button_data_get_names(subject: str) -> tuple:
     elif subject == dc.SUBJECT.PEOPLE:
         return dc.COLUMN_WITH_BUTTON.PEOPLE
     else:
-        raise ValueError(f'There are no names for the button data in the {subject} subject.')
+        raise ValueError(f'There are no column names for the button data in the {subject} subject.')
 
 
 def button_data_get_data(subject_data: tuple, column_names: tuple) -> tuple:

@@ -25,10 +25,10 @@ def data_get(subject: str, page_number: int) -> tuple:
 
 def button_data_get(subject: str, subject_data: tuple) -> dict:
     """ Returns the button data needed to handle client-side events. """
-    btn_name = dh.button_data_get_names(subject)
-    btn_data = dh.button_data_get_data(subject_data, btn_name)
+    column_names = dh.button_data_get_column_names(subject)
+    data = dh.button_data_get_data(subject_data, column_names)
 
-    return {'name': btn_name, 'data': btn_data}
+    return {'column name': column_names, 'data': data}
 
 
 # -------------------------------------------------- api controllers --------------------------------------------------
@@ -37,7 +37,7 @@ def api_data_get(request_data: dict) -> dict:
     """ Prepares data at the client's request. """
     API_WARS = 'api_wars'
     if not request_data or API_WARS not in request_data:
-        return {'error': 'wrong request data'}
+        return {'valueError': 'None or wrong request data.'}
 
     return {API_WARS: dh.api_data_get(request_data[API_WARS])}
 

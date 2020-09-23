@@ -19,8 +19,8 @@
                     {% set firstLoop = loop %}
                     {% for key, value in item.items() %}
                         <td class="{{ key }}">
-                            {% if key in button_data.name %}
-                                {% set data = button_data.data[firstLoop.index - 1][key] %}
+                            {% if key in button_data['column name'] %}
+                                {% set data = button_data['data'][firstLoop.index - 1][key] %}
                                 {% set data_numbers = data|length %}
                                 {% if data_numbers > 0 %}
                                     <!-- Button data -->
@@ -29,8 +29,8 @@
                                             data-toggle="modal"
                                             data-target="#modal-button-data"
                                             data-record-name="{{ item.name }}"
-                                            data-button-data-name="{{ key }}"
-                                            data-button-data="{{ data }}"
+                                            data-column-name="{{ key }}"
+                                            data-data="{{ data }}"
                                     >
                                         {% if data_numbers == 1 %}
                                             1 {{ key[:-1] }}
