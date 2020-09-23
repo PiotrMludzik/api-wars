@@ -5,9 +5,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 export const c = {
-    index: {
-        recordName: 0,
-        dataName: 1,
-        data: 2
+    api: {
+        key: 'api_wars',
+        URL: '/api'
+    },
+    key: {
+        recordName: 'record name',
+        columnName: 'column name',
+        data: 'data'
     }
 }

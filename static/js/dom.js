@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 import {c} from './constants.js'
-import {dataHandler} from "./data_handler.js";
+import {dataHandler as dh} from "./data_handler.js";
 import {modal} from "./modals.js";
 
 
@@ -24,15 +24,20 @@ export let dom = {
             const button = event.target;
             const buttonData = buttonDataGet(button);
 
-            dataHandler.api_post(`/api/${buttonData[c.index.dataName]}`, buttonData[c.index.data], function (data) {
-
+            dh.apiPost(c.api.URL, dh.prepareRequestData(buttonData[c.key.data]), data => {
+                console.log(data);  // NOTE: the development code.
             });
 
-            modal.Data(button, buttonData);
+            // modal.Data(button, buttonData);  // TODO: put this line into callback fuction above.
 
             function buttonDataGet (button) {
                 // Collects the data necessary to display the modal window.
-                return [button.dataset.recordName, button.dataset.buttonDataName, button.dataset.buttonData];
+                let buttonData = {};
+                buttonData[c.key.recordName] = button.dataset.recordName;
+                buttonData[c.key.columnName] = button.dataset.columnName;
+                buttonData[c.key.data] = button.dataset.data;
+
+                return buttonData;
             }
         }
     }

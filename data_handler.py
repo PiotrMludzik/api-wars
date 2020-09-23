@@ -67,11 +67,15 @@ def button_data_get_column_names(subject: str) -> tuple:
 
 def button_data_get_data(subject_data: tuple, column_names: tuple) -> list:
     """ Returns the data list for the corresponding column for button insertion. """
+    def unpack_data(data: list) -> str:
+        return ', '.join(data)
+
+    # ------------- button_data_get_data() -------------
     button_data = []
     for record in subject_data:
         record_data = {}
         for key in column_names:
-            record_data[key] = (record[key])
+            record_data[key] = unpack_data(record[key])
 
         button_data.append(record_data)
 
