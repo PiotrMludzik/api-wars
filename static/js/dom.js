@@ -6,7 +6,8 @@
 
 import {c} from './constants.js'
 import {dataHandler as dh} from "./data_handler.js";
-import {modal} from "./modals.js";
+import {modalWindow} from "./modals.js";
+import {utilities as util} from "./utilities.js";
 
 
 export let dom = {
@@ -15,20 +16,21 @@ export let dom = {
             // Inits event listeners for the button's data.
             const buttons = document.querySelectorAll('.button-data');
             buttons.forEach(button => {
-                button.addEventListener('click', this.click)
+                button.addEventListener('click', this.click);
             });
         },
         click: function (event) {
-            // Click event on the button data.
+            // Sends a request and receives response from the server, than create and displays a modal window with data.
             event.preventDefault();
             const button = event.target;
             const buttonData = buttonDataGet(button);
 
-            dh.apiPost(c.api.URL, dh.prepareRequestData(buttonData[c.key.data]), data => {
-                console.log(data);  // NOTE: the development code.
-            });
-
-            // modal.Data(button, buttonData);  // TODO: put this line into callback fuction above.
+            dh.apiPost(
+                c.api.URL,
+                dh.prepareRequestData(buttonData[c.key.data]),
+                modalWindow.show,
+                buttonData
+            );
 
             function buttonDataGet (button) {
                 // Collects the data necessary to display the modal window.

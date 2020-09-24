@@ -8,8 +8,8 @@ import {c} from './constants.js'
 
 
 export let dataHandler = {
-    apiPost: function (url, requestData, showModalWindow) {
-        // Sends the data to the API, and calls callback function.
+    apiPost: function (url, requestData, showModalWindow, modalWindowData) {
+        // Sends a request and receives response from the server, than calls callback function.
         fetch(url, {
             method: 'POST',
             headers: {
@@ -18,7 +18,10 @@ export let dataHandler = {
             body: JSON.stringify(requestData)
         })
             .then(response => response.json())  // parse the response as JSON
-            .then(responseData => showModalWindow(responseData));
+            .then(responseData => {
+                modalWindowData[c.key.data] = responseData[c.api.key];  // replaces old the button data
+                showModalWindow(modalWindowData);
+            });
     },
     prepareRequestData: function (rowData) {
         // Prepares the valid request data.
@@ -30,6 +33,7 @@ export let dataHandler = {
             return data.split(', ');
         }
         function makeDictRequest(data) {
+            // Create a valid dictionary request.
             let dictRequest = {};
             dictRequest[c.api.key] = data;
             return dictRequest;

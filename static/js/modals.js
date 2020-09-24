@@ -7,44 +7,35 @@
 import {c} from './constants.js'
 import {utilities as util} from "./utilities.js";
 
+const modalWindowContainer = {
+    title: document.querySelector('.modal-title'),
+    body: document.querySelector('.modal-body'),
+    footer: document.querySelector('.modal-footer')
+};
 
-export let modal = {
-    Data: function (button, buttonData) {
-        // Injects the modal window with the data.
-        const modalWindow = modalWindowGet(buttonData);
-        const targetElement = document.querySelector('.modal-container');
 
-        targetElement.innerHTML = modalWindow;
-        initCleanAfterCloseModalWindow();
+export let modalWindow = {
+    show: function (modalWindowData) {
+        // Displays the modal window with data.
+        console.log(modalWindowData);  // NOTE: the development code.
+        setData(modalWindowData);
+        initCleanData();
 
-        function modalWindowGet(buttonData) {
-            // Builds the modal window with a data.
-            return `
-                <div class="modal fade" id="modal-button-data" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">${util.capitalize(buttonData[c.index.dataName])} of ${buttonData[c.index.recordName]}</h5>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>${buttonData[c.index.data]}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        function initCleanAfterCloseModalWindow() {
-            // Adds the event listeners fired when close the modal window to cleans a html elements.
-            $('#modal-button-data').on('hidden.bs.modal', function () {
-                $(this).remove();
-            });
-        }
+        $('#modal-window').modal();
     }
+}
+
+function setData (modalWindowData) {
+    modalWindowContainer.title.innerHTML = `${util.capitalize(modalWindowData[c.key.columnName])} of ${modalWindowData[c.key.recordName]}`;
+    modalWindowContainer.body.innerHTML = modalWindowData[c.key.data];
+    modalWindowContainer.footer.innerHTML = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
+}
+
+function initCleanData () {
+    // Adds the event listeners fired when close the modal window to cleans a html elements.
+    $('#modal-window').on('hidden.bs.modal', function () {
+        modalWindowContainer.title.innerHTML = ' ';
+        modalWindowContainer.body.innerHTML = ' ';
+        modalWindowContainer.footer.innerHTML = ' ';
+    });
 }
