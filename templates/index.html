@@ -14,35 +14,39 @@
 
         <!-- Subject data -->
         <tbody>
-            {% for item in subject_data %}
+            {% for record in subject_data %}  {# all data #}
                 <tr>
                     {% set firstLoop = loop %}
-                    {% for key, value in item.items() %}
-                        <td class="{{ key }}">
-                            {% if key in button_data['column name'] %}
-                                {% set data = button_data['data'][firstLoop.index - 1][key] %}
-                                {% set data_numbers = data|length %}
-                                {% if data_numbers > 0 %}
-                                    <!-- Button data -->
+                    {% for r_column_name, r_cell_data in record.items() %}    {# record data #}
+                        <td class="{{ r_column_name }}">
+                            {% if r_column_name in button_data[0] %}    {# column with button #}
+                                {% set bdata = button_data[firstLoop.index - 1][r_column_name] %}
+                                {% set data = bdata['data'] %}
+                                {% set data_amount = bdata['amount of data'] %}
+                                {% if data_amount > 0 %}
+                                    {# Implement a button with the data #}
                                     <button type="button"
                                             class="btn btn-sm btn-secondary button-data"
                                             data-toggle="modal"
                                             data-target="#modal-button-data"
-                                            data-record-name="{{ item.name }}"
-                                            data-column-name="{{ key }}"
+                                            data-record-name="{{ record['name'] }}"
+                                            data-column-name="{{ r_column_name }}"
                                             data-data="{{ data }}"
                                     >
-                                        {% if data_numbers == 1 %}
-                                            1 {{ key[:-1] }}
+                                        {% if data_amount == 1 %}
+                                            1 {{ r_column_name[:-1] }}
                                         {% else %}
-                                            {{ data_numbers }} {{ key }}
+                                            {{ data_amount }} {{ r_column_name }}
                                         {% endif %}
                                     </button>
-                                {% else %}
-                                    No known {{ key }}
+
+                                {% else %}  {# no button #}
+                                    No known {{ r_column_name }}
                                 {% endif %}
+
+                            {# normal data cell #}
                             {% else %}
-                                {{ value }}
+                                {{ r_cell_data }}
                             {% endif %}
                         </td>
                     {% endfor %}

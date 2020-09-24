@@ -7,6 +7,7 @@
 import data_handler as dh
 import data_format as df
 import session
+import utilities as util
 
 
 # ------------------------------------------------- data controllers --------------------------------------------------
@@ -23,12 +24,26 @@ def data_get(subject: str, page_number: int) -> tuple:
 
 # ------------------------------------------------ button controllers -------------------------------------------------
 
-def button_data_get(subject: str, subject_data: tuple) -> dict:
+def button_data_get(subject: str, subject_data: tuple) -> list:
     """ Returns the button data needed to handle client-side events. """
-    column_names = dh.button_data_get_column_names(subject)
-    data = dh.button_data_get_data(subject_data, column_names)
+    def unpack_data(data: list) -> str:
+        """ Returns a string concatenated with the list data. """
+        return ', '.join(data)
 
-    return {'column name': column_names, 'data': data}
+    needed_columns = dh.button_data_get_needed_columns(subject)
+
+    record_data = []
+    for record in subject_data:
+        button_data = {}
+        for column_name in needed_columns:
+            button_data[column_name] = {
+                'amount of data': len(record[column_name]),
+                'data': unpack_data(record[column_name])
+            }
+
+        record_data.append(button_data)
+
+    return record_data
 
 
 # -------------------------------------------------- api controllers --------------------------------------------------

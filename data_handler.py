@@ -51,7 +51,7 @@ def data_prepare(subject: str, raw_data: list) -> list:
 
 # -------------------------------------------------- button handlers --------------------------------------------------
 
-def button_data_get_column_names(subject: str) -> tuple:
+def button_data_get_needed_columns(subject: str) -> tuple:
     """ Returns the names of data for the corresponding column for button insertion. """
     if subject == dc.SUBJECT.PLANETS:
         return dc.COLUMN_WITH_BUTTON.PLANETS
@@ -68,6 +68,7 @@ def button_data_get_column_names(subject: str) -> tuple:
 def button_data_get_data(subject_data: tuple, column_names: tuple) -> list:
     """ Returns the data list for the corresponding column for button insertion. """
     def unpack_data(data: list) -> str:
+        """ Returns a string concatenated with the list data. """
         return ', '.join(data)
 
     # ------------- button_data_get_data() -------------
@@ -75,7 +76,11 @@ def button_data_get_data(subject_data: tuple, column_names: tuple) -> list:
     for record in subject_data:
         record_data = {}
         for key in column_names:
-            record_data[key] = unpack_data(record[key])
+            data = record[key]
+            record_data[key] = {
+                'amount of data': len(data),
+                'data': unpack_data(data)
+            }
 
         button_data.append(record_data)
 
