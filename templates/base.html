@@ -26,10 +26,12 @@
                         <a class="nav-link {% if subject == subject_name %}active{% endif %}" href="{{ url_for('subject_page', subject=subject, page_number=1) }}">{{ subject|capitalize }}</a>
                     </li>
                 {% endfor %}
+
                 <!-- Voting statistics -->
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Voting statistics</a>
                 </li>
+
                 <!-- User panel -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
@@ -61,6 +63,7 @@
                 {% endif %}
                     <a class="page-link" href="{{ url_for('subject_page', subject=subject_name, page_number=page_active - 1) }}">&laquo;</a>
                     </li>
+
                 <!-- Page number buttons -->
                 {% for page in range(1, pages_number + 1) %}
                     {% if page == page_active %}
@@ -71,6 +74,7 @@
                         <a class="page-link" href="{{ url_for('subject_page', subject=subject_name, page_number=page) }}">{{ page }}</a>
                         </li>
                 {% endfor %}
+
                 <!-- Next button -->
                 {% if page_active == pages_number %}
                     <li class="page-item disabled">

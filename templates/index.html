@@ -17,14 +17,16 @@
             {% for record in subject_data %}  {# all data #}
                 <tr>
                     {% set firstLoop = loop %}
-                    {% for r_column_name, r_cell_data in record.items() %}    {# record data #}
+                    {% for r_column_name, r_cell_data in record.items() %}  {# record data #}
                         <td class="{{ r_column_name }}">
-                            {% if r_column_name in button_data[0] %}    {# column with button #}
+                            {# a column with the button #}
+                            {% if r_column_name in button_data[0] %}
                                 {% set bdata = button_data[firstLoop.index - 1][r_column_name] %}
                                 {% set data = bdata['data'] %}
                                 {% set data_amount = bdata['amount of data'] %}
+
+                                {# the button with the data #}
                                 {% if data_amount > 0 %}
-                                    {# Implement a button with the data #}
                                     <button type="button"
                                             class="btn btn-sm btn-secondary button-data"
                                             data-toggle="modal"
@@ -33,14 +35,15 @@
                                             data-column-name="{{ r_column_name }}"
                                             data-data="{{ data }}"
                                     >
-                                        {% if data_amount == 1 %}
+                                        {% if data_amount == 1 %}  {# singular #}
                                             1 {{ r_column_name[:-1] }}
-                                        {% else %}
+                                        {% else %}  {# plural #}
                                             {{ data_amount }} {{ r_column_name }}
                                         {% endif %}
                                     </button>
 
-                                {% else %}  {# no button #}
+                                {# no button #}
+                                {% else %}
                                     No known {{ r_column_name }}
                                 {% endif %}
 
