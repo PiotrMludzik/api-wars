@@ -26,6 +26,7 @@ export let modalWindow = {
 }
 
 function setData (modalWindowData) {
+    // Sets the data in the html elements of modal window.
     modalWindowContainer.title.innerHTML = `${util.capitalize(modalWindowData[c.key.columnName])} of ${modalWindowData[c.key.recordName]}`;
     modalWindowContainer.body.innerHTML = modalWindowData[c.key.data];
     modalWindowContainer.footer.innerHTML = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
