@@ -16,9 +16,11 @@ export const c = {
         },
         URL: '/api'
     },
-    key: {
-        recordName: 'record name',
-        columnName: 'column name',
-        data: 'data'
+    data: {
+        key: {
+            recordName: 'record name',
+            columnName: 'column name',
+            data: 'data'
+        }
     }
 }

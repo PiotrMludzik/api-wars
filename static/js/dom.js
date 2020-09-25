@@ -27,7 +27,7 @@ export let dom = {
 
             dh.apiPost(
                 c.api.URL,
-                dh.prepareRequestData(buttonData[c.key.data]),
+                dh.prepareRequestData(buttonData[c.data.key.data]),
                 modalWindow.show,
                 buttonData
             );
@@ -35,9 +35,9 @@ export let dom = {
             function buttonDataGet (button) {
                 // Collects the data necessary to display the modal window.
                 let buttonData = {};
-                buttonData[c.key.recordName] = button.dataset.recordName;
-                buttonData[c.key.columnName] = button.dataset.columnName;
-                buttonData[c.key.data] = button.dataset.data;
+                buttonData[c.data.key.recordName] = button.dataset.recordName;
+                buttonData[c.data.key.columnName] = button.dataset.columnName;
+                buttonData[c.data.key.data] = button.dataset.data;
 
                 return buttonData;
             }

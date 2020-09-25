@@ -19,7 +19,7 @@ export let dataHandler = {
         })
             .then(response => response.json())
             .then(responseData => {
-                modalWindowData[c.key.data] = responseData[c.api.key.header][c.api.key.swapi][c.api.key.response];
+                modalWindowData[c.data.key.data] = responseData[c.api.key.header][c.api.key.swapi][c.api.key.response];
                 showModalWindow(modalWindowData);
             });
     },
