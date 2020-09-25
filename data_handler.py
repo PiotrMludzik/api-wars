@@ -6,7 +6,6 @@
 
 import data_constants as dc
 import swapi
-import utilities as util
 
 
 # --------------------------------------------------- data handlers ---------------------------------------------------
@@ -54,7 +53,9 @@ def headers_get(subject: str, modal_window: bool) -> tuple:
 
     def headers_for_modal_window(subject_name: str, header_names: tuple) -> tuple:
         """ Removes headings that contain buttons. """
-        if subject_name == dc.SUBJECT.STARSHIPS:
+        if subject_name == dc.SUBJECT.PLANETS:
+            headers_with_button = dc.COLUMN_WITH_BUTTON.PLANETS
+        elif subject_name == dc.SUBJECT.STARSHIPS:
             headers_with_button = dc.COLUMN_WITH_BUTTON.STARSHIPS
         elif subject_name == dc.SUBJECT.VEHICLES:
             headers_with_button = dc.COLUMN_WITH_BUTTON.VEHICLES
@@ -77,9 +78,18 @@ def headers_get(subject: str, modal_window: bool) -> tuple:
     return headers
 
 
+def display_name(subject_data: list, column_name: str) -> list:
+    """ Display name instead of url (only on buttons). """
+    for record in subject_data:
+        url = "".join(record[column_name])
+        record[column_name] = swapi.get_data_name(url, full_url=True)
+
+    return subject_data
+
+
 # -------------------------------------------------- button handlers --------------------------------------------------
 
-def button_data_get_needed_columns(subject: str) -> tuple:
+def button_data_headers_get(subject: str) -> tuple:
     """ Returns the names of data for the corresponding column for button insertion. """
     if subject == dc.SUBJECT.PLANETS:
         return dc.COLUMN_WITH_BUTTON.PLANETS
@@ -128,7 +138,9 @@ def api_data_get(request_data: list) -> list:
 
 def subject_get_proper(subject: str) -> str:
     """ Returns proper subject. """
-    if subject in dc.COLUMN_NAMES_WITH_PEOPLE:
+    if subject in dc.COLUMN_NAMES_WITH_PLANETS:
+        subject = dc.SUBJECT.PLANETS
+    elif subject in dc.COLUMN_NAMES_WITH_PEOPLE:
         subject = dc.SUBJECT.PEOPLE
 
     return subject

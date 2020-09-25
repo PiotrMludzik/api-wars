@@ -7,7 +7,6 @@
 import locale
 import data_constants as dc
 import utilities as util
-import swapi
 
 
 class _Name:
@@ -52,7 +51,8 @@ def data_format(subject: str, data: list) -> list:
         elif subject == dc.SUBJECT.PEOPLE:
             item[dc.KEY.PEOPLE.HEIGHT] = _format_length(item[dc.KEY.PEOPLE.HEIGHT])
             item[dc.KEY.PEOPLE.MASS] = _format_mass(item[dc.KEY.PEOPLE.MASS])
-            item[dc.KEY.PEOPLE.HOMEWORLD] = _format_homeworld(item[dc.KEY.PEOPLE.HOMEWORLD])
+            if dc.KEY.PEOPLE.HOMEWORLD in item:
+                item[dc.KEY.PEOPLE.HOMEWORLD] = _format_homeworld(item[dc.KEY.PEOPLE.HOMEWORLD])
     return data
 
 
@@ -95,8 +95,8 @@ def _format_diameter(data: str) -> str:
     return '{:n} km'.format(int(data)) if _valid_number(data) else data
 
 
-def _format_homeworld(data: str) -> str:
-    return swapi.get_data_name(data, full_url=True)
+def _format_homeworld(data: str) -> list:
+    return [data]  # list needed for later data processing
 
 
 def _format_length(data: str) -> str:

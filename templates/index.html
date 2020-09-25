@@ -36,7 +36,11 @@
                                             data-data="{{ data }}"
                                     >
                                         {% if data_amount == 1 %}  {# singular #}
-                                            1 {{ r_column_name[:-1] }}
+                                            {% if r_column_name == 'homeworld' %}
+                                                {{ r_cell_data }}
+                                            {% else %}
+                                                1 {{ r_column_name[:-1] }}
+                                            {% endif %}
                                         {% else %}  {# plural #}
                                             {{ data_amount }} {{ r_column_name }}
                                         {% endif %}

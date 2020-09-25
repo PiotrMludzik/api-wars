@@ -27,6 +27,9 @@ def subject_page(subject, page_number):
     subject_data = ctrl.data_get(subject, page_number)
     button_data = ctrl.button_data_get(subject, subject_data)
 
+    if subject == dc.SUBJECT.PEOPLE:
+        subject_data = ctrl.display_name(subject_data, dc.KEY.People.HOMEWORLD)
+
     return render_template(
         'index.html',
         subjects_list=dc.SUBJECT_ORDER,

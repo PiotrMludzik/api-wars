@@ -151,6 +151,7 @@ class _ColumnWithButton:
         KEY.VEHICLES.PILOTS,
     )
     PEOPLE = (
+        KEY.PEOPLE.HOMEWORLD,
         KEY.PEOPLE.PILOTED_STARSHIPS,
         KEY.PEOPLE.PILOTED_VEHICLES
     )
@@ -159,5 +160,6 @@ class _ColumnWithButton:
 COLUMN_WITH_BUTTON = _ColumnWithButton()
 
 
-# The names of the columns that contain the people data.
+# The names of the columns that contain the subject data.
+COLUMN_NAMES_WITH_PLANETS = ['homeworld'],
 COLUMN_NAMES_WITH_PEOPLE = ['residents', 'pilots']

@@ -11,7 +11,7 @@ def html_table_prepare(data: list) -> str:
     """ Returns a string that contains html code with data. """
     doc, tag, text = Doc().tagtext()
 
-    with tag('table', klass="table table-bordered table-striped"):
+    with tag('table', klass="table table-sm table-responsive-lg table-bordered table-striped"):
         # Header names.
         with tag('thead', klass="table-dark"):
             with tag('tr'):

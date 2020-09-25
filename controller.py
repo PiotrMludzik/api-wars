@@ -23,6 +23,12 @@ def data_get(subject: str, page_number: int) -> tuple:
     return tuple(data)
 
 
+def display_name(subject_data: tuple, column_name: str) -> tuple:
+    """ Display name instead of url (only on buttons). """
+    subject_data = dh.display_name(list(subject_data), column_name)
+    return tuple(subject_data)
+
+
 # ------------------------------------------------ button controllers -------------------------------------------------
 
 def button_data_get(subject: str, subject_data: tuple) -> list:
@@ -31,12 +37,11 @@ def button_data_get(subject: str, subject_data: tuple) -> list:
         """ Returns a string concatenated with the list data. """
         return ', '.join(data)
 
-    needed_columns = dh.button_data_get_needed_columns(subject)
-
+    headers = dh.button_data_headers_get(subject)
     record_data = []
     for record in subject_data:
         button_data = {}
-        for column_name in needed_columns:
+        for column_name in headers:
             button_data[column_name] = {
                 'amount of data': len(record[column_name]),
                 'data': unpack_data(record[column_name])
