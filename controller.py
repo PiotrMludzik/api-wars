@@ -4,6 +4,7 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
+import constants as c
 import data_handler as dh
 import data_format as df
 import session
@@ -49,12 +50,49 @@ def button_data_get(subject: str, subject_data: tuple) -> list:
 # -------------------------------------------------- api controllers --------------------------------------------------
 
 def api_data_get(request_data: dict) -> dict:
-    """ Prepares data at the client's request. """
-    API_WARS = 'api_wars'
-    if not request_data or API_WARS not in request_data:
-        return {'valueError': 'None or wrong request data.'}
+    """
+        Prepares data at the client's request.
 
-    return {API_WARS: dh.api_data_get(request_data[API_WARS])}
+        Valid request pattern:
+        {
+            'api_wars':
+                {
+                    'swapi':
+                        {
+                            'request': [ <list of the url requests to the swapi api database> ]
+                        },
+                }
+        }
+
+        Valid response pattern:
+        {
+            'api_wars':
+                {
+                    'swapi':
+                        {
+                            'response': [ <list of the url response from the swapi api database> ]
+                        },
+                    'modal window':
+                        {
+                            'injection code': ' <html string with data for injection to modal window> '
+                        }
+                }
+        }
+    """
+    if not request_data:
+        return {'valueError': 'None request data.'}
+    if c.API_KEY.HEADER not in request_data:
+        return {'valueError': 'Wrong request data.'}
+
+    SWAPI_REQUEST = request_data[c.API_KEY.HEADER][c.API_KEY.SWAPI][c.API_KEY.REQUEST]
+
+    return {
+        c.API_KEY.HEADER: {
+            c.API_KEY.SWAPI: {
+                c.API_KEY.RESPONSE: dh.api_data_get(SWAPI_REQUEST)
+            }
+        }
+    }
 
 
 # ------------------------------------------------- other controllers -------------------------------------------------
