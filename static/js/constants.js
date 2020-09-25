@@ -12,6 +12,7 @@ export const c = {
             modalWindow: 'modal window',
             request: 'request',
             response: 'response',
+            subject: 'subject',
             swapi: 'swapi'
         },
         URL: '/api'

@@ -23,7 +23,7 @@ export let dataHandler = {
                 showModalWindow(modalWindowData);
             });
     },
-    prepareRequestData: function (rowData) {
+    prepareRequestData: function (columnName, rowData) {
         // Prepares the valid request data.
         const preparedData = changeStringToList(rowData);
         return makeDictRequest(preparedData);
@@ -38,6 +38,9 @@ export let dataHandler = {
                 [c.api.key.header]: {
                     [c.api.key.swapi]: {
                         [c.api.key.request]: data
+                    },
+                    [c.api.key.modalWindow]: {
+                        [c.api.key.subject]: columnName
                     }
                 }
             };
