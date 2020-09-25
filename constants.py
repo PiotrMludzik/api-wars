@@ -5,14 +5,16 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 # API key names.
-class _ApiKey:
-    HEADER = 'api_wars'
-    INJECTION_CODE = 'injection code'
-    MODAL_WINDOW = 'modal window'
-    REQUEST = 'request'
-    RESPONSE = 'response'
-    SWAPI = 'swapi'
+class _Api:
+    class Key:
+        HEADER = 'api_wars'
+        INJECTION_CODE = 'injection code'
+        MODAL_WINDOW = 'modal window'
+        REQUEST = 'request'
+        SUBJECT = 'subject'
+        SWAPI = 'swapi'
+
+    KEY = Key()
 
 
-API_KEY = _ApiKey()
-
+API = _Api()

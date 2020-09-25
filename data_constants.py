@@ -157,3 +157,7 @@ class _ColumnWithButton:
 
 
 COLUMN_WITH_BUTTON = _ColumnWithButton()
+
+
+# The names of the columns that contain the people data.
+COLUMN_NAMES_WITH_PEOPLE = ['residents', 'pilots']

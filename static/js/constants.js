@@ -11,7 +11,6 @@ export const c = {
             injectionCode: 'injection code',
             modalWindow: 'modal window',
             request: 'request',
-            response: 'response',
             subject: 'subject',
             swapi: 'swapi'
         },

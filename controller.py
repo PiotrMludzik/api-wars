@@ -7,8 +7,8 @@
 import constants as c
 import data_handler as dh
 import data_format as df
+import modal_window as mw
 import session
-import utilities as util
 
 
 # ------------------------------------------------- data controllers --------------------------------------------------
@@ -61,6 +61,10 @@ def api_data_get(request_data: dict) -> dict:
                         {
                             'request': [ <list of the url requests to the swapi api database> ]
                         },
+                    'modal window':
+                        {
+                            'subject': ' <the subject name string> '
+                        }
                 }
         }
 
@@ -68,10 +72,6 @@ def api_data_get(request_data: dict) -> dict:
         {
             'api_wars':
                 {
-                    'swapi':
-                        {
-                            'response': [ <list of the url response from the swapi api database> ]
-                        },
                     'modal window':
                         {
                             'injection code': ' <html string with data for injection to modal window> '
@@ -79,17 +79,27 @@ def api_data_get(request_data: dict) -> dict:
                 }
         }
     """
+    def prepare_data(subject: str, row_data: list) -> list:
+        """ Prepares the data for create html code. """
+        prepared_data = dh.data_prepare(subject, row_data)
+        prepared_data = df.data_format(subject, prepared_data)
+
+        return prepared_data
+
+    # ------------- api_data_get() -------------
     if not request_data:
         return {'valueError': 'None request data.'}
-    if c.API_KEY.HEADER not in request_data:
+    if c.API.KEY.HEADER not in request_data:
         return {'valueError': 'Wrong request data.'}
 
-    SWAPI_REQUEST = request_data[c.API_KEY.HEADER][c.API_KEY.SWAPI][c.API_KEY.REQUEST]
+    subject = dh.get_proper_subject(request_data[c.API.KEY.HEADER][c.API.KEY.MODAL_WINDOW][c.API.KEY.SUBJECT])
+    swapi_response = dh.api_data_get(request_data[c.API.KEY.HEADER][c.API.KEY.SWAPI][c.API.KEY.REQUEST])
+    html_code = mw.html_table_prepare(prepare_data(subject, swapi_response))
 
     return {
-        c.API_KEY.HEADER: {
-            c.API_KEY.SWAPI: {
-                c.API_KEY.RESPONSE: dh.api_data_get(SWAPI_REQUEST)
+        c.API.KEY.HEADER: {
+            c.API.KEY.MODAL_WINDOW: {
+                c.API.KEY.INJECTION_CODE: html_code
             }
         }
     }

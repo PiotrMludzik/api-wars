@@ -98,6 +98,14 @@ def api_data_get(request_data: list) -> list:
     return response_data
 
 
+def get_proper_subject(subject: str) -> str:
+    """ Returns proper subject. """
+    if subject in dc.COLUMN_NAMES_WITH_PEOPLE:
+        subject = dc.SUBJECT.PEOPLE
+
+    return subject
+
+
 # ------------------------------------------------ other data handlers ------------------------------------------------
 
 def column_names_get(subject: str) -> tuple:
