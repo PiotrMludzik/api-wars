@@ -6,7 +6,14 @@
 
 export const c = {
     api: {
-        key: 'api_wars',
+        key: {
+            header: 'api_wars',
+            injectionCode: 'injection code',
+            modalWindow: 'modal window',
+            request: 'request',
+            response: 'response',
+            swapi: 'swapi'
+        },
         URL: '/api'
     },
     key: {

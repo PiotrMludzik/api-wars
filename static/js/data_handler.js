@@ -17,9 +17,9 @@ export let dataHandler = {
             },
             body: JSON.stringify(requestData)
         })
-            .then(response => response.json())  // parse the response as JSON
+            .then(response => response.json())
             .then(responseData => {
-                modalWindowData[c.key.data] = responseData[c.api.key];  // replaces old the button data
+                modalWindowData[c.key.data] = responseData[c.api.key.header][c.api.key.swapi][c.api.key.response];
                 showModalWindow(modalWindowData);
             });
     },
@@ -34,9 +34,13 @@ export let dataHandler = {
         }
         function makeDictRequest(data) {
             // Create a valid dictionary request.
-            let dictRequest = {};
-            dictRequest[c.api.key] = data;
-            return dictRequest;
+            return {
+                [c.api.key.header]: {
+                    [c.api.key.swapi]: {
+                        [c.api.key.request]: data
+                    }
+                }
+            };
         }
     }
 }
