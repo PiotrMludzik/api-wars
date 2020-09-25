@@ -81,7 +81,7 @@ def api_data_get(request_data: dict) -> dict:
     """
     def data_prepare(subject: str, row_data: list) -> list:
         """ Prepares the data for create html code. """
-        prepared_data = dh.data_prepare(subject, row_data)
+        prepared_data = dh.data_prepare(subject, row_data, modal_window=True)
         prepared_data = df.data_format(subject, prepared_data)
 
         return prepared_data

@@ -6,6 +6,7 @@
 
 import data_constants as dc
 import swapi
+import utilities as util
 
 
 # --------------------------------------------------- data handlers ---------------------------------------------------
@@ -21,32 +22,59 @@ def data_get(subject: str, page_number: int) -> dict:
     return data
 
 
-def data_prepare(subject: str, raw_data: list) -> list:
+def data_prepare(subject: str, raw_data: list, modal_window: bool = False) -> list:
     """ Returns only the necessary data for a given subject. """
-    def needed_data_get(subject_name: str) -> tuple:
-        if subject_name == dc.SUBJECT.PLANETS:
-            data_name = dc.HEADERS.PLANETS
-        elif subject_name == dc.SUBJECT.STARSHIPS:
-            data_name = dc.HEADERS.STARSHIPS
-        elif subject_name == dc.SUBJECT.VEHICLES:
-            data_name = dc.HEADERS.VEHICLES
-        elif subject_name == dc.SUBJECT.PEOPLE:
-            data_name = dc.HEADERS.PEOPLE
-        else:
-            raise ValueError(f'Needed data for {subject} not found.')
-
-        return data_name
-
-    # ------------- subject_prepare_data() -------------
-    needed_data = needed_data_get(subject)
+    headers_list = headers_get(subject, modal_window)
     prepared_data = []
     for raw_item in raw_data:
         prepared_item = {}
-        for key in needed_data:
+        for key in headers_list:
             prepared_item[key] = raw_item[key]
         prepared_data.append(prepared_item)
 
     return prepared_data
+
+
+def headers_get(subject: str, modal_window: bool) -> tuple:
+    """ Returns the necessary header names. """
+    def headers_based_on_subject(subject_name: str) -> tuple:
+        """ Collects header names. """
+        if subject_name == dc.SUBJECT.PLANETS:
+            header_names = dc.HEADERS.PLANETS
+        elif subject_name == dc.SUBJECT.STARSHIPS:
+            header_names = dc.HEADERS.STARSHIPS
+        elif subject_name == dc.SUBJECT.VEHICLES:
+            header_names = dc.HEADERS.VEHICLES
+        elif subject_name == dc.SUBJECT.PEOPLE:
+            header_names = dc.HEADERS.PEOPLE
+        else:
+            raise ValueError(f'The header names for {subject} not found.')
+
+        return header_names
+
+    def headers_for_modal_window(subject_name: str, header_names: tuple) -> tuple:
+        """ Removes headings that contain buttons. """
+        if subject_name == dc.SUBJECT.STARSHIPS:
+            headers_with_button = dc.COLUMN_WITH_BUTTON.STARSHIPS
+        elif subject_name == dc.SUBJECT.VEHICLES:
+            headers_with_button = dc.COLUMN_WITH_BUTTON.VEHICLES
+        elif subject_name == dc.SUBJECT.PEOPLE:
+            headers_with_button = dc.COLUMN_WITH_BUTTON.PEOPLE
+        else:
+            raise ValueError(f'The columns that contain buttons for {subject} not found.')
+
+        header_names = list(header_names)
+        for header_to_remove in headers_with_button:
+            header_names.remove(header_to_remove)
+
+        return tuple(header_names)
+
+    # ------------- headers_get() -------------
+    headers = headers_based_on_subject(subject)
+    if modal_window:
+        headers = headers_for_modal_window(subject, headers)
+
+    return headers
 
 
 # -------------------------------------------------- button handlers --------------------------------------------------
