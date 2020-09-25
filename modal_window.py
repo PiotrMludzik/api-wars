@@ -7,29 +7,23 @@
 from yattag import Doc
 
 
-def html_table_prepare(data):
+def html_table_prepare(data: list) -> str:
     """ Returns a string that contains html code with data. """
     doc, tag, text = Doc().tagtext()
 
-    with tag('h2'):
-        text('Hello world!')
+    with tag('table', klass="table table-bordered table-striped"):
+        # Header names.
+        with tag('thead', klass="table-dark"):
+            with tag('tr'):
+                for column_name in data[0]:  # based on the first record
+                    with tag('th'):
+                        text(column_name)
+        # Subject data
+        with tag('tbody'):
+            for record in data:
+                with tag('tr'):
+                    for cell_data in record.values():
+                        with tag('td'):
+                            text(str(cell_data))
 
     return doc.getvalue()
-
-
-    # <table class="table table-bordered table-striped">
-    #     <thead class="table-dark">
-    #         <tr>
-    #             <th>
-    #
-    #             </th>
-    #         </tr>
-    #     </thead>
-    #     <tbody>
-    #         <tr>
-    #             <td class="{{ r_column_name }}">
-    #
-    #             </td>
-    #         </tr>
-    #     </tbody>
-    # </table>
