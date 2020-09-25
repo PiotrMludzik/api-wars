@@ -25,13 +25,13 @@ def data_prepare(subject: str, raw_data: list) -> list:
     """ Returns only the necessary data for a given subject. """
     def needed_data_get(subject_name: str) -> tuple:
         if subject_name == dc.SUBJECT.PLANETS:
-            data_name = dc.DATA.PLANETS
+            data_name = dc.HEADERS.PLANETS
         elif subject_name == dc.SUBJECT.STARSHIPS:
-            data_name = dc.DATA.STARSHIPS
+            data_name = dc.HEADERS.STARSHIPS
         elif subject_name == dc.SUBJECT.VEHICLES:
-            data_name = dc.DATA.VEHICLES
+            data_name = dc.HEADERS.VEHICLES
         elif subject_name == dc.SUBJECT.PEOPLE:
-            data_name = dc.DATA.PEOPLE
+            data_name = dc.HEADERS.PEOPLE
         else:
             raise ValueError(f'Needed data for {subject} not found.')
 
@@ -98,7 +98,7 @@ def api_data_get(request_data: list) -> list:
     return response_data
 
 
-def get_proper_subject(subject: str) -> str:
+def subject_get_proper(subject: str) -> str:
     """ Returns proper subject. """
     if subject in dc.COLUMN_NAMES_WITH_PEOPLE:
         subject = dc.SUBJECT.PEOPLE
@@ -111,13 +111,13 @@ def get_proper_subject(subject: str) -> str:
 def column_names_get(subject: str) -> tuple:
     """ Returns column names. """
     if subject == dc.SUBJECT.PLANETS:
-        return dc.DATA.PLANETS
+        return dc.HEADERS.PLANETS
     elif subject == dc.SUBJECT.STARSHIPS:
-        return dc.DATA.STARSHIPS
+        return dc.HEADERS.STARSHIPS
     elif subject == dc.SUBJECT.VEHICLES:
-        return dc.DATA.VEHICLES
+        return dc.HEADERS.VEHICLES
     elif subject == dc.SUBJECT.PEOPLE:
-        return dc.DATA.PEOPLE
+        return dc.HEADERS.PEOPLE
     else:
         raise ValueError(f'There are no column names for the {subject} subject.')
 

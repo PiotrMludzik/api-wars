@@ -79,7 +79,7 @@ def api_data_get(request_data: dict) -> dict:
                 }
         }
     """
-    def prepare_data(subject: str, row_data: list) -> list:
+    def data_prepare(subject: str, row_data: list) -> list:
         """ Prepares the data for create html code. """
         prepared_data = dh.data_prepare(subject, row_data)
         prepared_data = df.data_format(subject, prepared_data)
@@ -92,9 +92,9 @@ def api_data_get(request_data: dict) -> dict:
     if c.API.KEY.HEADER not in request_data:
         return {'valueError': 'Wrong request data.'}
 
-    subject = dh.get_proper_subject(request_data[c.API.KEY.HEADER][c.API.KEY.MODAL_WINDOW][c.API.KEY.SUBJECT])
+    subject = dh.subject_get_proper(request_data[c.API.KEY.HEADER][c.API.KEY.MODAL_WINDOW][c.API.KEY.SUBJECT])
     swapi_response = dh.api_data_get(request_data[c.API.KEY.HEADER][c.API.KEY.SWAPI][c.API.KEY.REQUEST])
-    html_code = mw.html_table_prepare(prepare_data(subject, swapi_response))
+    html_code = mw.html_table_prepare(data_prepare(subject, swapi_response))
 
     return {
         c.API.KEY.HEADER: {

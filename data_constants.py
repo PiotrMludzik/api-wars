@@ -84,7 +84,7 @@ KEY = _Key()
 
 
 # Constants for the column names and their sort order.
-class _Data:
+class _Headers:
     PLANETS = (
         KEY.PLANETS.NAME,
         KEY.PLANETS.DIAMETER,
@@ -136,7 +136,7 @@ class _Data:
     )
 
 
-DATA = _Data()
+HEADERS = _Headers()
 
 
 # The names of the columns that contain the button data.
