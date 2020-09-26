@@ -5,8 +5,10 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 from flask import Flask, render_template, redirect, request, jsonify
-import controller as ctrl
-import data_constants as dc
+import api
+import constants as c
+import data_controller as dc
+import utilities as util
 
 
 app = Flask(__name__)
@@ -24,30 +26,30 @@ def index():
 @app.route('/<subject>/<int:page_number>')
 def subject_page(subject, page_number):
     """ Shows a page listing the data specified in the subject variable. """
-    subject_data = ctrl.data_get(subject, page_number)
-    button_data = ctrl.button_data_get(subject, subject_data)
+    subject_data = dc.data_get(subject, page_number)
+    button_data = dc.button_data_get(subject, subject_data)
 
-    if subject == dc.SUBJECT.PEOPLE:
-        subject_data = ctrl.display_name(subject_data, dc.KEY.People.HOMEWORLD)
+    if subject == c.SUBJECT.PEOPLE:
+        subject_data = dc.data_change_url_to_name(subject_data, c.KEY.People.HOMEWORLD)
 
     return render_template(
         'index.html',
-        subjects_list=dc.SUBJECT_ORDER,
+        subjects_list=c.SUBJECT_ORDER,
         subject_name=subject,
         subject_data=subject_data,
         button_data=button_data,
-        column_names=ctrl.column_names_get(subject),
-        pages_number=ctrl.pagination_number_get(subject),
+        column_names=dc.column_names_get(subject),
+        pages_number=util.pagination_number_get(subject),
         page_active=page_number
     )
 
 
-# ----------------------------------------------------- api route -----------------------------------------------------
+# ------------------------------------------- api request & response routes -------------------------------------------
 
 @app.route('/api', methods=['POST'])
 def api_data():
     """ Receives and responds to the client's request. """
-    response = ctrl.api_data_get(request.get_json())
+    response = api.data_get(request.get_json())
     return jsonify(response)
 
 

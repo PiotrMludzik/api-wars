@@ -21,9 +21,9 @@
                         <td class="{{ r_column_name }}">
                             {# a column with the button #}
                             {% if r_column_name in button_data[0] %}
-                                {% set bdata = button_data[firstLoop.index - 1][r_column_name] %}
-                                {% set data = bdata['data'] %}
-                                {% set data_amount = bdata['amount of data'] %}
+                                {% set bd = button_data[firstLoop.index - 1][r_column_name] %}
+                                {% set data = bd['data'] %}
+                                {% set data_amount = bd['amount of data'] %}
 
                                 {# the button with the data #}
                                 {% if data_amount > 0 %}
