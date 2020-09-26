@@ -84,12 +84,12 @@ def api_data_get(request_data: dict) -> dict:
                 }
         }
     """
-    def data_prepare(subject: str, row_data: list) -> list:
+    def data_prepare(subject: str, row_data: list) -> tuple:
         """ Prepares the data for create html code. """
         prepared_data = dh.data_prepare(subject, row_data, modal_window=True)
         prepared_data = df.data_format(subject, prepared_data)
 
-        return prepared_data
+        return tuple(prepared_data)
 
     # ------------- api_data_get() -------------
     if not request_data:
@@ -99,12 +99,13 @@ def api_data_get(request_data: dict) -> dict:
 
     subject = dh.subject_get_proper(request_data[c.API.KEY.HEADER][c.API.KEY.MODAL_WINDOW][c.API.KEY.SUBJECT])
     swapi_response = dh.api_data_get(request_data[c.API.KEY.HEADER][c.API.KEY.SWAPI][c.API.KEY.REQUEST])
-    html_code = mw.html_table_prepare(data_prepare(subject, swapi_response))
+    data_prepared = data_prepare(subject, swapi_response)
+    headers_prepared = dh.haeders_prepare(data_prepared[0])  # only the first record
 
     return {
         c.API.KEY.HEADER: {
             c.API.KEY.MODAL_WINDOW: {
-                c.API.KEY.INJECTION_CODE: html_code
+                c.API.KEY.INJECTION_CODE: mw.html_table_prepare(data_prepared, headers_prepared)
             }
         }
     }

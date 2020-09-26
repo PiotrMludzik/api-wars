@@ -7,7 +7,7 @@
 from yattag import Doc
 
 
-def html_table_prepare(data: list) -> str:
+def html_table_prepare(data: tuple, headers: tuple) -> str:
     """ Returns a string that contains html code with data. """
     doc, tag, text = Doc().tagtext()
 
@@ -15,7 +15,7 @@ def html_table_prepare(data: list) -> str:
         # Header names.
         with tag('thead', klass="table-dark"):
             with tag('tr'):
-                for column_name in data[0]:  # based on the first record
+                for column_name in headers:
                     with tag('th'):
                         text(column_name)
         # Subject data

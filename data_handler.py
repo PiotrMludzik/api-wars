@@ -78,6 +78,15 @@ def headers_get(subject: str, modal_window: bool) -> tuple:
     return headers
 
 
+def haeders_prepare(data_record: dict) -> tuple:
+    """ Prepares column names. """
+    column_names = []
+    for key in data_record:
+        column_names.append(key)
+
+    return tuple(column_names_prepare(column_names))
+
+
 def display_name(subject_data: list, column_name: str) -> list:
     """ Display name instead of url (only on buttons). """
     for record in subject_data:
@@ -162,7 +171,7 @@ def column_names_get(subject: str) -> tuple:
         raise ValueError(f'There are no column names for the {subject} subject.')
 
 
-def column_names_prepare(raw_names: tuple) -> tuple:
+def column_names_prepare(raw_names) -> tuple:
     """
         Returns the tuple of column names, where:
             * character '_' is replaced with a space ' ';
