@@ -161,5 +161,5 @@ COLUMN_WITH_BUTTON = _ColumnWithButton()
 
 
 # The names of the columns that contain the subject data.
-COLUMN_NAMES_WITH_PLANETS = ['homeworld'],
-COLUMN_NAMES_WITH_PEOPLE = ['residents', 'pilots']
+COLUMN_NAMES_WITH_PLANETS = ('homeworld'),
+COLUMN_NAMES_WITH_PEOPLE = ('residents', 'pilots')
