@@ -40,19 +40,16 @@ import swapi
 
 
 # API key names.
-class _Api:
-    class Key:
-        HEADER = 'api_wars'
-        INJECTION_CODE = 'injection code'
-        MODAL_WINDOW = 'modal window'
-        REQUEST = 'request'
-        SUBJECT = 'subject'
-        SWAPI = 'swapi'
-
-    KEY = Key()
+class _Key:
+    HEADER = 'api_wars'
+    INJECTION_CODE = 'injection code'
+    MODAL_WINDOW = 'modal window'
+    REQUEST = 'request'
+    SUBJECT = 'subject'
+    SWAPI = 'swapi'
 
 
-API = _Api()
+KEY = _Key()
 
 
 # -------------------------------------------------- api controller ---------------------------------------------------
@@ -61,18 +58,18 @@ def data_get(request_data: dict) -> dict:
     """ Prepares data at the client's request. """
     if not request_data:
         return {'valueError': 'None request data.'}
-    if API.KEY.HEADER not in request_data:
+    if KEY.HEADER not in request_data:
         return {'valueError': 'Wrong request data.'}
 
-    subject = _subject_get_proper(request_data[API.KEY.HEADER][API.KEY.MODAL_WINDOW][API.KEY.SUBJECT])
-    swapi_response = _data_get(request_data[API.KEY.HEADER][API.KEY.SWAPI][API.KEY.REQUEST])
+    subject = _subject_get_proper(request_data[KEY.HEADER][KEY.MODAL_WINDOW][KEY.SUBJECT])
+    swapi_response = _data_get(request_data[KEY.HEADER][KEY.SWAPI][KEY.REQUEST])
     data_prepared = _data_prepare(subject, swapi_response)
     column_names_prepared = _column_names_prepare(data_prepared[0])  # only the first record
 
     return {
-        API.KEY.HEADER: {
-            API.KEY.MODAL_WINDOW: {
-                API.KEY.INJECTION_CODE: mw.html_table_prepare(data_prepared, column_names_prepared)
+        KEY.HEADER: {
+            KEY.MODAL_WINDOW: {
+                KEY.INJECTION_CODE: mw.html_table_prepare(data_prepared, column_names_prepared)
             }
         }
     }
