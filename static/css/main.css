@@ -11,6 +11,6 @@ body {
 
 /* ------------------------------------------------- table styles -------------------------------------------------- */
 
-.residents, .pilots, .starships, .vehicles {
+.residents, .pilots, .homeworld, .starships, .vehicles {
     text-align: center;
 }
