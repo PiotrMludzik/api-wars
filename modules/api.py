@@ -31,12 +31,13 @@
 #
 # ---------------------------------------------------------------------------------------------------------------------
 
-import constants as c
-import data_controller as dc
-import data_handler as dh
-import data_format as df
-import modal_window as mw
-import swapi
+from modules import\
+    constants as c,\
+    data_controller as dc,\
+    data_format as df,\
+    data_handler as dh,\
+    modal_window as mw,\
+    swapi
 
 
 # API key names.

@@ -1,6 +1,12 @@
-/__pycache__
-/.idea/
-/presentation
-/temp
-.temp
-/venv
+### Python & IDE ###
+__pycache__/
+.idea/
+venv/
+.env
+
+### temporary ###
+temp/
+*.tmp
+
+### others ###
+exercise/

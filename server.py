@@ -5,11 +5,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 from flask import Flask, render_template, redirect, request, jsonify
-import api
-import constants as c
-import data_controller as dc
-import utilities as util
-
+from modules import api, constants as c, data_controller as dc, utilities as util
 
 app = Flask(__name__)
 app.secret_key = '#I\'ll be back!:D'  # encrypt session variables

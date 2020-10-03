@@ -4,9 +4,7 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-import constants as c
-import swapi
-import utilities as util
+from modules import constants as c, swapi, utilities as util
 
 
 # ------------------------------------------------ main data handlers -------------------------------------------------

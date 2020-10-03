@@ -5,8 +5,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 import locale
-import constants as c
-import utilities as util
+from modules import constants as c, utilities as util
 
 
 # ---------------------------------------------- formatting controllers -----------------------------------------------

@@ -4,10 +4,7 @@
 #                                                        v 1.0
 # ---------------------------------------------------------------------------------------------------------------------
 
-import data_handler as dh
-import data_format as df
-import swapi
-import utilities as util
+from modules import data_format as df, data_handler as dh, swapi, utilities as util
 
 
 # ----------------------------------------------- main data controllers -----------------------------------------------
