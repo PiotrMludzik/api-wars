@@ -36,7 +36,7 @@ def data_format(subject: str, data: list) -> list:
             item[c.KEY.VEHICLES.LENGTH] = _format_length(item[c.KEY.VEHICLES.LENGTH])
             item[c.KEY.VEHICLES.ATSP] = _format_atsp(item[c.KEY.VEHICLES.ATSP])
         elif subject == c.SUBJECT.PEOPLE:
-            item[c.KEY.PEOPLE.HEIGHT] = _format_length(item[c.KEY.PEOPLE.HEIGHT])
+            item[c.KEY.PEOPLE.HEIGHT] = _format_height(item[c.KEY.PEOPLE.HEIGHT])
             item[c.KEY.PEOPLE.MASS] = _format_mass(item[c.KEY.PEOPLE.MASS])
             if c.KEY.PEOPLE.HOMEWORLD in item:
                 item[c.KEY.PEOPLE.HOMEWORLD] = _format_homeworld(item[c.KEY.PEOPLE.HOMEWORLD])
@@ -74,6 +74,12 @@ def _format_diameter(data: str) -> str:
         return c.FORMAT_NAME.UNKNOWN
 
     return '{:n} km'.format(int(data)) if _valid_number(data) else data
+
+
+def _format_height(data: str) -> str:
+    data = _prepare_integer(data)
+    height = int(data) / 100  # convert cm -> m
+    return '{:n} m'.format(height) if _valid_number(data) else data
 
 
 def _format_homeworld(data: str) -> list:
