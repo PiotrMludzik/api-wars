@@ -8,5 +8,5 @@ venv/
 temp/
 *.tmp
 
-### others ###
-exercise/
+### GitHub Wiki source folder ###
+wiki/
